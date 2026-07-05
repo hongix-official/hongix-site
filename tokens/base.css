@@ -1,0 +1,75 @@
+/* ============================================================
+   HONGIX — base element styles + a few brand utilities.
+   Lightweight: sets canvas, type defaults, link + focus styles.
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg-page);
+  color: var(--text-strong);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-display);
+  font-weight: var(--role-heading-weight);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-snug);
+  color: var(--text-strong);
+  margin: 0 0 0.4em;
+  text-wrap: balance;
+}
+h1 { font-weight: var(--fw-extra); line-height: var(--lh-snug); letter-spacing: var(--ls-tight); }
+
+p { margin: 0 0 1em; text-wrap: pretty; }
+
+a { color: inherit; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+
+/* Mono eyebrow / kicker */
+.hx-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-eyebrow);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--text-body);
+}
+
+/* Serif italic highlight — drop inside a sans headline to emphasise one word/phrase.
+   Resets the display tracking and nudges optical size so Instrument Serif sits right. */
+.hx-serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  font-size: 1.08em;
+  line-height: 0.9;
+}
+.hx-serif--accent { color: var(--coral-400); }
+
+/* Highlight marker behind inline text */
+.hx-mark {
+  background: var(--brand);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding: 0.04em 0.28em;
+  border-radius: 6px;
+}
+
+/* Focus visibility — clear, on-brand ring */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}

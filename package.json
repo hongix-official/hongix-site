@@ -1,0 +1,15 @@
+{
+  "name": "hongix-site",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Hongix Design Labs marketing site — built from the Hongix Design System.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --host"
+  },
+  "devDependencies": {
+    "vite": "^5.4.11"
+  }
+}

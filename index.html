@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hongix — design support in one subscription</title>
+<meta name="description" content="Hongix Design Labs — your senior design partner for one flat monthly rate. Branding, UI/UX, websites and more, delivered in 48 hours. Pause or cancel anytime.">
+<link rel="canonical" href="https://hongix.com/">
+<link rel="icon" href="/assets/favicon.svg">
+
+<!-- Open Graph / social -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hongix.com/">
+<meta property="og:title" content="Hongix — design support in one subscription">
+<meta property="og:description" content="Your senior design partner for one flat monthly rate. Delivered in 48 hours. Pause or cancel anytime.">
+<meta property="og:image" content="https://hongix.com/assets/logomark.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Hongix — design support in one subscription">
+<meta name="twitter:description" content="Your senior design partner for one flat monthly rate. Delivered in 48 hours.">
+<meta name="twitter:image" content="https://hongix.com/assets/logomark.svg">
+<meta name="theme-color" content="#FFC02E">
+
+<!-- Phosphor icons (bold) -->
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+
+<!-- Vendored React + design-system bundle (classic scripts set window globals before the app module runs) -->
+<script src="/vendor/react.production.min.js"></script>
+<script src="/vendor/react-dom.production.min.js"></script>
+<script src="/vendor/_ds_bundle.js"></script>
+
+<style>
+  .hx-container { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); }
+  .hx-section { padding: var(--space-10) 0; }
+  /* Page canvas — warm near-white with a subtle dot pattern */
+  body { background-color: #FDFBF4; background-image: radial-gradient(rgba(70,52,18,.055) 1px, transparent 1.1px); background-size: 15px 15px; background-position: -5px -5px; }
+  @media (max-width: 900px) {
+    .hx-hide-md { display: none !important; }
+    .hx-hero-grid, .hx-about-grid, .hx-book-grid, .hx-foot-grid { grid-template-columns: 1fr !important; }
+    .hx-steps-grid, .hx-work-grid, .hx-why-grid, .hx-price-grid, .hx-trust-grid, .hx-portfolio { grid-template-columns: 1fr !important; }
+  }
+  @media (max-width: 560px) { .hx-hide-sm { display: none !important; } }
+
+  /* Hero sub-headline stamp — "stamped down" wobble on load; always visible (transform-only, no fade) */
+  @media (prefers-reduced-motion: no-preference) {
+    .hx-stamp { animation: hx-stamp-in 620ms var(--ease-spring) 220ms both; }
+    @keyframes hx-stamp-in {
+      0%   { transform: rotate(-11deg) scale(1.28); }
+      55%  { transform: rotate(-0.5deg) scale(0.95); }
+      78%  { transform: rotate(-3.6deg) scale(1.03); }
+      100% { transform: rotate(-2.5deg) scale(1); }
+    }
+  }
+
+  /* Hero story loop: a new request lands on the board → cursor opens it → page delivered (reduced-motion shows the delivered end-state) */
+  @media (prefers-reduced-motion: no-preference) {
+    .hx-flow-board   { animation: hx-fl-board 9s var(--ease-out) infinite; }
+    .hx-flow-newcard { animation: hx-fl-newcard 9s var(--ease-out) infinite; }
+    .hx-flow-cursor  { animation: hx-fl-cursor 9s var(--ease-out) infinite; }
+    .hx-flow-page    { animation: hx-fl-page 9s var(--ease-out) infinite; }
+    .hx-flow-stamp   { animation: hx-fl-stamp 9s var(--ease-spring) infinite; }
+  }
+  @keyframes hx-fl-board {
+    0%   { opacity: 0; transform: scale(.9) translateY(10px); }
+    6%   { opacity: 1; transform: scale(1) translateY(0); }
+    44%  { opacity: 1; transform: scale(1) translateY(0); }
+    50%  { opacity: 0; transform: scale(.93) translateY(-8px); }
+    100% { opacity: 0; transform: scale(.9) translateY(10px); }
+  }
+  @keyframes hx-fl-newcard {
+    0%   { opacity: 0; transform: translateY(-26px) scale(.96); }
+    15%  { opacity: 0; transform: translateY(-26px) scale(.96); }
+    23%  { opacity: 1; transform: translateY(0) scale(1); }
+    26%  { transform: translateY(0) scale(1.035); }
+    30%  { transform: scale(1); }
+    35%  { transform: scale(.95); }
+    39%  { transform: scale(1); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @keyframes hx-fl-cursor {
+    0%   { opacity: 0; transform: translate(54px, 64px); }
+    25%  { opacity: 0; transform: translate(54px, 64px); }
+    29%  { opacity: 1; }
+    35%  { opacity: 1; transform: translate(0, 0); }
+    37%  { transform: translate(-2px, -2px) scale(.82); }
+    40%  { transform: translate(0, 0) scale(1); }
+    47%  { opacity: 0; transform: translate(16px, 16px); }
+    100% { opacity: 0; transform: translate(54px, 64px); }
+  }
+  @keyframes hx-fl-page {
+    0%   { opacity: 0; transform: scale(.86) translateY(12px); }
+    50%  { opacity: 0; transform: scale(.86) translateY(12px); }
+    60%  { opacity: 1; transform: scale(1) translateY(0); }
+    63%  { transform: scale(1.012); }
+    67%  { transform: scale(1); }
+    92%  { opacity: 1; transform: scale(1) translateY(0); }
+    98%  { opacity: 0; transform: scale(.97) translateY(-6px); }
+    100% { opacity: 0; transform: scale(.86) translateY(12px); }
+  }
+  @keyframes hx-fl-stamp {
+    0%   { opacity: 0; transform: rotate(-16deg) scale(1.6); }
+    64%  { opacity: 0; transform: rotate(-16deg) scale(1.6); }
+    70%  { opacity: 1; transform: rotate(-2deg) scale(.95); }
+    74%  { transform: rotate(-7deg) scale(1.05); }
+    78%  { transform: rotate(-5deg) scale(1); }
+    92%  { opacity: 1; transform: rotate(-5deg) scale(1); }
+    98%  { opacity: 0; }
+    100% { opacity: 0; transform: rotate(-16deg) scale(1.6); }
+  }
+
+  /* About illustration — a request crafted step by step (reduced-motion shows an in-progress card) */
+  @media (prefers-reduced-motion: no-preference) {
+    .kb-work  { animation: kb-work 6s ease-in-out infinite; }
+    .kb-c1    { animation: kb-c1 6s ease-in-out infinite; }
+    .kb-c2    { animation: kb-c2 6s ease-in-out infinite; }
+    .kb-c3    { animation: kb-c3 6s ease-in-out infinite; }
+    .kb-c4    { animation: kb-c4 6s ease-in-out infinite; }
+    .kb-prog  { animation: kb-prog 6s ease-in-out infinite; }
+    .kb-stamp { animation: kb-stamp 6s ease-in-out infinite; }
+    .kb-pulse { animation: kb-pulse 1.6s ease-in-out infinite; }
+    .kb-s1    { animation: kb-s1 6s ease-in-out infinite; }
+    .kb-s2    { animation: kb-s2 6s ease-in-out infinite; }
+    .kb-s3    { animation: kb-s3 6s ease-in-out infinite; }
+    .kb-s4    { animation: kb-s4 6s ease-in-out infinite; }
+  }
+  @keyframes kb-work { 0% { opacity: 0; } 3%, 92% { opacity: 1; } 99%, 100% { opacity: 0; } }
+  @keyframes kb-c1 { 0%, 12% { opacity: 0; transform: scale(.5); } 16% { opacity: 1; transform: scale(1.15); } 19%, 100% { opacity: 1; transform: scale(1); } }
+  @keyframes kb-c2 { 0%, 30% { opacity: 0; transform: scale(.5); } 34% { opacity: 1; transform: scale(1.15); } 37%, 100% { opacity: 1; transform: scale(1); } }
+  @keyframes kb-c3 { 0%, 48% { opacity: 0; transform: scale(.5); } 52% { opacity: 1; transform: scale(1.15); } 55%, 100% { opacity: 1; transform: scale(1); } }
+  @keyframes kb-c4 { 0%, 64% { opacity: 0; transform: scale(.5); } 68% { opacity: 1; transform: scale(1.15); } 71%, 100% { opacity: 1; transform: scale(1); } }
+  @keyframes kb-prog { 0%, 8% { width: 0%; } 18% { width: 25%; } 36% { width: 50%; } 54% { width: 75%; } 70%, 100% { width: 100%; } }
+  @keyframes kb-stamp { 0%, 72% { opacity: 0; transform: scale(.6); } 76% { opacity: 1; transform: scale(1.12); } 79%, 92% { opacity: 1; transform: scale(1); } 100% { opacity: 0; } }
+  @keyframes kb-pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .4; transform: scale(.75); } }
+  @keyframes kb-s1 { 0%, 17% { width: 0%; } 25%, 100% { width: 100%; } }
+  @keyframes kb-s2 { 0%, 35% { width: 0%; } 43%, 100% { width: 100%; } }
+  @keyframes kb-s3 { 0%, 53% { width: 0%; } 61%, 100% { width: 100%; } }
+  @keyframes kb-s4 { 0%, 69% { width: 0%; } 77%, 100% { width: 100%; } }
+
+  /* Selected works — Figma workspace: design builds element by element, cursors roam (reduced-motion shows the finished frame) */
+  @media (prefers-reduced-motion: no-preference) {
+    .fig-el1  { animation: fig-el1 5.5s ease-in-out infinite; }
+    .fig-el2  { animation: fig-el2 5.5s ease-in-out infinite; }
+    .fig-el3  { animation: fig-el3 5.5s ease-in-out infinite; }
+    .fig-cur1 { animation: fig-cur1 6.5s ease-in-out infinite; }
+    .fig-cur2 { animation: fig-cur2 7.5s ease-in-out infinite; }
+  }
+  @keyframes fig-el1 { 0%, 6% { opacity: 0; transform: translateY(8px); } 14%, 88% { opacity: 1; transform: translateY(0); } 96%, 100% { opacity: 0; transform: translateY(8px); } }
+  @keyframes fig-el2 { 0%, 24% { opacity: 0; transform: translateY(8px); } 32%, 88% { opacity: 1; transform: translateY(0); } 96%, 100% { opacity: 0; transform: translateY(8px); } }
+  @keyframes fig-el3 { 0%, 44% { opacity: 0; transform: translateY(8px); } 52%, 88% { opacity: 1; transform: translateY(0); } 96%, 100% { opacity: 0; transform: translateY(8px); } }
+  @keyframes fig-cur1 { 0% { transform: translate(55px, 208px); } 25% { transform: translate(270px, 76px); } 50% { transform: translate(470px, 146px); } 75% { transform: translate(175px, 246px); } 100% { transform: translate(55px, 208px); } }
+  @keyframes fig-cur2 { 0% { transform: translate(430px, 56px); } 33% { transform: translate(120px, 128px); } 66% { transform: translate(370px, 238px); } 100% { transform: translate(430px, 56px); } }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="module" src="/src/main.jsx"></script>
+</body>
+</html>

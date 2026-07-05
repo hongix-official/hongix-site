@@ -1,0 +1,60 @@
+/* ============================================================
+   HONGIX — SPACING, RADII, BORDERS, SHADOWS, MOTION
+   4px base grid. Thin hairline borders + soft, warm-tinted
+   layered shadows — elegant and professional, never brutalist.
+   ============================================================ */
+:root {
+  /* ---- spacing (4px grid) ---- */
+  --space-0:   0;
+  --space-1:   0.25rem;  /* 4 */
+  --space-2:   0.5rem;   /* 8 */
+  --space-3:   0.75rem;  /* 12 */
+  --space-4:   1rem;     /* 16 */
+  --space-5:   1.5rem;   /* 24 */
+  --space-6:   2rem;     /* 32 */
+  --space-7:   2.5rem;   /* 40 */
+  --space-8:   3rem;     /* 48 */
+  --space-9:   4rem;     /* 64 */
+  --space-10:  5rem;     /* 80 */
+  --space-12:  7rem;     /* 112 */
+  --space-16:  10rem;    /* 160 */
+
+  --container:    1200px;
+  --container-sm: 760px;
+  --gutter:       clamp(1.25rem, 4vw, 3rem); /* @kind spacing */
+
+  /* ---- radii (generous, friendly) ---- */
+  --radius-xs:   8px;
+  --radius-sm:   12px;
+  --radius-md:   18px;
+  --radius-lg:   26px;
+  --radius-xl:   36px;
+  --radius-2xl:  48px;
+  --radius-pill: 999px;
+
+  /* ---- borders (thin hairline = the elegant look) ---- */
+  --bw:       1px;          /* default outline weight */
+  --bw-thick: 1.5px;        /* emphasis / hero outline */
+  --border-line:  var(--bw) solid var(--line);
+  --border-thick: var(--bw-thick) solid var(--line-strong);
+
+  /* ---- soft layered shadows (warm-tinted, blurred) ---- */
+  --shadow-xs: 0 1px 2px rgb(var(--shadow-rgb) / 0.06);
+  --shadow-sm: 0 2px 4px rgb(var(--shadow-rgb) / 0.06), 0 1px 2px rgb(var(--shadow-rgb) / 0.05);
+  --shadow-md: 0 6px 16px rgb(var(--shadow-rgb) / 0.08), 0 2px 5px rgb(var(--shadow-rgb) / 0.05);
+  --shadow-lg: 0 16px 34px rgb(var(--shadow-rgb) / 0.10), 0 5px 12px rgb(var(--shadow-rgb) / 0.06);
+  --shadow-xl: 0 28px 56px rgb(var(--shadow-rgb) / 0.12), 0 10px 20px rgb(var(--shadow-rgb) / 0.07);
+  /* playful colored glow — soft, not a hard offset */
+  --shadow-pop: 0 12px 30px rgb(255 90 54 / 0.22);
+
+  /* ---- motion (smooth, friendly) ---- */
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.5, 1); /* @kind other */
+  --ease-out:    cubic-bezier(0.22, 1, 0.36, 1); /* @kind other */
+  --dur-fast:    140ms; /* @kind other */
+  --dur-base:    220ms; /* @kind other */
+  --dur-slow:    380ms; /* @kind other */
+
+  /* interaction offsets (gentle lift, no hard sink) */
+  --press-shift: 1px;
+  --hover-lift:  2px;
+}

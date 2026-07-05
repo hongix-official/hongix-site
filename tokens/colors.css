@@ -1,0 +1,92 @@
+/* ============================================================
+   HONGIX — COLOR TOKENS
+   Warm, vibrant, playful. Anchored on sunbeam yellow over cream,
+   with coral / pink / sky / mint pops. Ink near-black for text;
+   borders are soft warm hairlines, shadows soft + warm-tinted.
+   ============================================================ */
+:root {
+  /* ---- Ink / neutrals (warm-tinted, never pure grey) ---- */
+  --ink:        #1C1606;   /* primary text */
+  --ink-soft:   #4A4231;   /* secondary text */
+  --ink-faint:  #8A8068;   /* tertiary / captions */
+  --line:       #E3DED2;   /* default hairline border (soft warm grey) */
+  --line-strong:#C9C2B3;   /* defined hairline (inputs, dividers) */
+  --shadow-rgb: 38 28 8;                  /* warm shadow base (for rgb()) */
+
+  --cream:      #FFF6E2;   /* page canvas */
+  --cream-deep: #FCEFCD;   /* alt section / sunken */
+  --paper:      #FFFFFF;   /* cards on cream */
+  --paper-2:    #FFFBF1;   /* subtle off-white */
+
+  /* ---- Brand primary: sunbeam yellow ---- */
+  --yellow-100: #FFF1C2;
+  --yellow-200: #FFE08A;
+  --yellow-300: #FFCF4D;
+  --yellow-400: #FFC02E;   /* PRIMARY */
+  --yellow-500: #F2A20C;
+  --yellow-600: #C97E00;
+
+  /* ---- Coral (warm secondary) ---- */
+  --coral-100:  #FFE0D6;
+  --coral-300:  #FF8A6B;
+  --coral-400:  #FF5A36;   /* secondary accent */
+  --coral-500:  #E83C16;
+
+  /* ---- Pink (playful pop) ---- */
+  --pink-100:   #FFE3F1;
+  --pink-300:   #FF9BCF;
+  --pink-400:   #FF63B5;
+  --pink-500:   #E7559E;
+
+  /* ---- Sky (friendly cool pop) ---- */
+  --sky-100:    #D6ECFF;
+  --sky-300:    #6FB8FF;
+  --sky-400:    #2E93FF;
+  --sky-500:    #1C6FE0;
+
+  /* ---- Mint (fresh / success) ---- */
+  --mint-100:   #D4F5E3;
+  --mint-300:   #58D79B;
+  --mint-400:   #18C47B;
+  --mint-500:   #119A60;
+
+  /* ---- Lilac (rare cool accent) ---- */
+  --lilac-300:  #C3B5FF;
+  --lilac-400:  #9C86FF;
+
+  /* ============================================================
+     SEMANTIC ALIASES
+     ============================================================ */
+  --bg-page:        var(--cream);
+  --bg-alt:         var(--cream-deep);
+  --surface-card:   var(--paper);
+  --surface-raised: var(--paper-2);
+
+  --text-strong:    var(--ink);
+  --text-body:      var(--ink-soft);
+  --text-muted:     var(--ink-faint);
+  --text-on-fill:   var(--ink);     /* text on bright fills stays ink */
+  --text-inverse:   var(--cream);   /* text on ink fills */
+
+  --brand:          var(--yellow-400);
+  --brand-deep:     var(--yellow-500);
+  --accent:         var(--coral-400);
+
+  --border:         var(--line);
+  --border-strong:  var(--line-strong);
+  --shadow-color:   rgb(var(--shadow-rgb));
+
+  --focus-ring:     var(--sky-400);
+
+  /* status */
+  --success: var(--mint-400);
+  --warning: var(--yellow-400);
+  --danger:  var(--coral-500);
+  --info:    var(--sky-400);
+
+  /* ---- Signature gradients (warm sunset) ---- */
+  --grad-sunrise: linear-gradient(135deg, var(--yellow-300) 0%, var(--coral-400) 55%, var(--pink-400) 100%);
+  --grad-citrus:  linear-gradient(120deg, var(--yellow-300) 0%, var(--coral-400) 100%);
+  --grad-candy:   linear-gradient(135deg, var(--pink-300) 0%, var(--lilac-400) 100%);
+  --grad-sky:     linear-gradient(135deg, var(--sky-300) 0%, var(--mint-300) 100%);
+}
