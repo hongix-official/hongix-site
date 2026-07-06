@@ -38,7 +38,7 @@ function Audience() {
 
 const WHY = [
   ['ph-wallet', 'Predictable pricing', 'No hourly billing, no surprises. Your design needs covered by one flat monthly fee.'],
-  ['ph-infinity', 'Unlimited requests', 'Drop as many tasks into your queue as you want. Hongix tackles them one at a time, delivering fresh work every 48 hours.'],
+  ['ph-gauge', 'Fresh work every 48 hours', 'Momentum you can plan around. Submit a request and get finished, polished work back on a predictable 48-hour cadence.'],
   ['ph-pause-circle', 'The pause feature', 'No need to pay for idle time. Pause your 31-day billing cycle anytime and bank your remaining days for later.'],
   ['ph-arrows-out-cardinal', 'Complete flexibility', 'No long-term contracts, no retainer minimums. You are only committed for the exact month you pay for. Cancel anytime.'],
 ];

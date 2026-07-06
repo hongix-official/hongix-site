@@ -123,7 +123,7 @@ function Header({ onNav }) {
             <NavPill href="#faq" onClick={(e) => { e.preventDefault(); onNav('faq'); }}>FAQ</NavPill>
           </nav>
           <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 10 }}>
-            <Button className="hx-hide-hdrcta" variant="ghost" size="sm" iconLeft="ph-sparkle" onClick={() => onNav('waitlist')}>Join Waitlist</Button>
+            <Button className="hx-hide-hdrcta" variant="ghost" size="sm" iconLeft="ph-sparkle" onClick={() => onNav('waitlist')}>Apply</Button>
             <Button variant="primary" size="sm" iconLeft="ph-phone-call" onClick={() => onNav('call')}>Book a call</Button>
           </div>
         </div>
@@ -215,7 +215,7 @@ function Hero({ onNav }) {
         <div className="hx-hero-grid" style={{ display: 'grid', gridTemplateColumns: '1.1fr .9fr', gap: 'var(--space-8)', alignItems: 'center' }}>
           <div>
             <h1 style={{ fontSize: 'clamp(2.5rem, 1.5rem + 3.4vw, 4rem)', margin: 0, lineHeight: 1.04 }}>
-              Your design support to launch, scale and <span className="hx-serif">stand&nbsp;out</span>
+              Your startup's <span className="hx-serif">design&nbsp;partner</span> for product, launch &amp; growth
             </h1>
             <p style={{ margin: '22px 0 0' }}>
               <span className="hx-stamp" style={{

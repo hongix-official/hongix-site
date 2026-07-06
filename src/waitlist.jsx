@@ -5,7 +5,7 @@
    so we reference it bare, matching the design's section files. */
 import { WAITLIST_ENDPOINT } from './config.js';
 
-const PLANS = ['Design & No-code', 'Design & Webflow Dev', 'Not sure yet'];
+const PLANS = ['Hongix Partner', 'Hongix Partner + Webflow', 'Not sure yet'];
 const PLACEHOLDER = 'PASTE_YOUR_APPS_SCRIPT_EXEC_URL_HERE';
 
 const field = {
@@ -81,7 +81,7 @@ export function WaitlistModal({ open, plan, onClose }) {
   };
 
   return (
-    <div onClick={onClose} role="dialog" aria-modal="true" aria-label="Join the waitlist"
+    <div onClick={onClose} role="dialog" aria-modal="true" aria-label="Apply for a founding spot"
       style={{ position: 'fixed', inset: 0, zIndex: 100, background: 'rgba(28,22,6,.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}>
       <div onClick={(e) => e.stopPropagation()}
         style={{ background: 'var(--paper)', border: 'var(--bw) solid var(--line)', borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-xl)', padding: 'var(--space-7)', maxWidth: 420, width: '100%', position: 'relative' }}>
@@ -93,17 +93,17 @@ export function WaitlistModal({ open, plan, onClose }) {
         {status === 'done' ? (
           <div style={{ textAlign: 'center', padding: '8px 4px' }}>
             <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 64, height: 64, background: 'var(--mint-300)', border: '1px solid var(--line)', borderRadius: 999, fontSize: 32, marginBottom: 14 }}><i className="ph-bold ph-check-circle" /></span>
-            <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 24, margin: '0 0 8px' }}>You're on the list!</h3>
+            <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 24, margin: '0 0 8px' }}>Application received</h3>
             <p style={{ color: 'var(--ink-soft)', margin: '0 0 20px' }}>
-              Thanks{name.trim() ? `, ${name.trim().split(' ')[0]}` : ''} — we'll be in touch about <strong style={{ color: 'var(--ink)' }}>{choice}</strong> as founding-member spots open up.
+              Thanks{name.trim() ? `, ${name.trim().split(' ')[0]}` : ''} — we'll be in touch about your <strong style={{ color: 'var(--ink)' }}>{choice}</strong> founding partner spot shortly.
             </p>
             <Button variant="primary" size="lg" full onClick={onClose}>Done</Button>
           </div>
         ) : (
           <>
             <img src="/assets/logomark.svg" alt="" style={{ width: 48, height: 48, marginBottom: 14 }} />
-            <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 24, margin: '0 0 6px' }}>Join the waitlist</h3>
-            <p style={{ color: 'var(--ink-soft)', margin: '0 0 22px' }}>Founding-member spots are limited. Drop your details and we'll reach out as they open up.</p>
+            <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 24, margin: '0 0 6px' }}>Apply for a founding spot</h3>
+            <p style={{ color: 'var(--ink-soft)', margin: '0 0 22px' }}>Just 3 founding partner spots. Tell us a little about you and we'll be in touch.</p>
 
             <form onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               <div>
@@ -115,7 +115,7 @@ export function WaitlistModal({ open, plan, onClose }) {
                 <input id="wl-email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="jane@company.com" autoComplete="email" style={field} />
               </div>
               <div>
-                <label htmlFor="wl-plan" style={label}>Which plan?</label>
+                <label htmlFor="wl-plan" style={label}>Interested in</label>
                 <select id="wl-plan" value={choice} onChange={(e) => setChoice(e.target.value)} style={{ ...field, appearance: 'none', cursor: 'pointer' }}>
                   {PLANS.map((p) => <option key={p} value={p}>{p}</option>)}
                 </select>
@@ -127,7 +127,7 @@ export function WaitlistModal({ open, plan, onClose }) {
 
               <div style={{ marginTop: 2 }}>
                 <Button type="submit" variant="primary" size="lg" full iconRight="ph-arrow-right" disabled={!canSubmit}>
-                  {status === 'submitting' ? 'Sending…' : 'Join waitlist'}
+                  {status === 'submitting' ? 'Sending…' : 'Apply'}
                 </Button>
               </div>
               <p style={{ margin: 0, textAlign: 'center', fontSize: 12.5, color: 'var(--ink-faint)' }}>

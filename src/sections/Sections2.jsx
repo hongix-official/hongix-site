@@ -102,7 +102,7 @@ function Steps({ refEl }) {
           titleMaxw="none" maxw="none" sub="Get your design needs done with a simple, three-step system." />
         <div className="hx-steps-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-5)' }}>
           <StepCard step="1" icon="ph-kanban" iconTone="yellow" title="Subscribe & queue">
-            Get access to your dedicated Kanban board. Load it up with as many design requests and details as you want. No meetings required.
+            Get access to your dedicated board. Add your requests and priorities with all the context you want — briefs, links, Loom videos. No meetings required.
           </StepCard>
           <StepCard step="2" icon="ph-paint-brush-broad" iconTone="coral" title="The work begins">
             One active request at a time. Big projects are broken into milestones with early alignment, so you see purposeful progress every 48 hours.
@@ -116,10 +116,20 @@ function Steps({ refEl }) {
   );
 }
 
-const SERVICES = [
-  ['ph-browser', 'Website design'], ['ph-cursor-click', 'UI/UX design'], ['ph-pen-nib', 'Logos & branding'],
-  ['ph-instagram-logo', 'Social media content'], ['ph-megaphone', 'Ad assets'],
-  ['ph-newspaper', 'Print design'], ['ph-code', 'Framer / Webflow development*'], ['ph-dots-three-circle', 'and more'],
+/* Services grouped around startup outcomes, not a flat checklist. */
+const SERVICE_GROUPS = [
+  ['Product', 'ph-cube', 'var(--sky-300)', [
+    ['ph-app-window', 'SaaS UI'], ['ph-device-mobile', 'Mobile apps'], ['ph-chart-line', 'Dashboards'],
+    ['ph-cursor-click', 'UX improvements'], ['ph-flow-arrow', 'User flows'], ['ph-squares-four', 'Design systems'],
+  ]],
+  ['Launch', 'ph-rocket-launch', 'var(--yellow-300)', [
+    ['ph-browser', 'Landing pages'], ['ph-globe', 'Marketing websites'], ['ph-presentation-chart', 'Pitch decks'],
+    ['ph-flag', 'Product launches'], ['ph-pen-nib', 'Brand identity'],
+  ]],
+  ['Growth', 'ph-trend-up', 'var(--coral-300)', [
+    ['ph-megaphone', 'Campaign assets'], ['ph-palette', 'Marketing design'], ['ph-file-text', 'Sales collateral'],
+    ['ph-cards', 'Presentation design'], ['ph-instagram-logo', 'Social assets'],
+  ]],
 ];
 
 const WORK = [
@@ -170,8 +180,18 @@ function Services({ refEl }) {
       <div className="hx-container">
         <SectionHead size="sm" eyebrow="Services & portfolio" titleMaxw="none" maxw="none" title={<>What you can drop in your <span className="hx-serif">queue</span>.</>}
           sub="One subscription covers the full range of creative work your brand needs." />
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginBottom: 'var(--space-8)' }}>
-          {SERVICES.map(([ic, l], i) => <Tag key={i} icon={ic} interactive>{l}</Tag>)}
+        <div className="hx-svc-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-6)', marginBottom: 'var(--space-8)' }}>
+          {SERVICE_GROUPS.map(([group, gic, tone, items], i) => (
+            <div key={i}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
+                <span style={{ width: 40, height: 40, flex: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: tone, border: 'var(--bw) solid var(--line)', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-xs)', fontSize: 20 }}><i className={`ph-bold ${gic}`} /></span>
+                <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 20, letterSpacing: '-.02em' }}>{group}</span>
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+                {items.map(([ic, l], j) => <Tag key={j} icon={ic}>{l}</Tag>)}
+              </div>
+            </div>
+          ))}
         </div>
 
         <div className="hx-portfolio" style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', border: 'var(--bw) solid var(--line)', borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-lg)', overflow: 'hidden', minHeight: 296, background: 'var(--paper)' }}>

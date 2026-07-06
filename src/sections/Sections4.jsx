@@ -23,41 +23,39 @@ function Pricing({ refEl, onNav }) {
   return (
     <section id="pricing" ref={refEl} className="hx-section">
       <div className="hx-container">
-        <SH4 align="center" eyebrow="Pricing" title={<>One subscription. <span className="hx-serif">Everything</span> you need.</>}
-          maxw="none" sub="Pause or cancel anytime. No contracts, no retainer minimums." />
-        <div className="hx-price-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--space-6)', maxWidth: 920, margin: '0 auto', alignItems: 'stretch' }}>
+        <SH4 align="center" eyebrow="Pricing" title={<>One partner, <span className="hx-serif">one</span> clear price.</>}
+          maxw="none" sub="A predictable monthly partnership — pause or cancel anytime. No contracts, no retainer minimums." />
+        <div style={{ maxWidth: 460, margin: '0 auto' }}>
           <PlanCard
-            plan="Design & No-code"
-            onNav={onNav}
-            name="Design & No-code"
-            description="Perfect for ongoing marketing, branding, UI/UX, and simple no-code sites."
-            badge="Founding Member Rate" was="$4,999" now="$3,999" per="USD / month"
-            features={[
-              'One active request at a time',
-              'Graphic design, branding, social & UI/UX',
-              'Framer & Squarespace site builds',
-              'Source files delivered in Figma',
-              'Unlimited revisions',
-              'Pause or cancel anytime',
-            ]}
-            cta="Join waitlist"
-          />
-          <PlanCard
-            plan="Design & Webflow Dev"
+            plan="Hongix Partner"
             onNav={onNav}
             featured
-            name="Design & Webflow Dev"
-            description="Perfect for businesses that need a fully custom website built and maintained."
-            badge="Founding Member Rate" was="$5,999" now="$4,999" per="USD / month"
+            name="Hongix Partner"
+            description="Ongoing senior design across product, launch, and growth — one predictable partner."
+            badge="Founding Partner · 3 spots" was="$3,999" now="$2,999" per="USD / month"
             features={[
-              'Everything in Design & No-code, plus:',
-              'Full custom Webflow development',
-              'Complex website architectures & CMS',
-              'Unlimited revisions',
+              'Product, launch & growth design',
+              'Framer & Squarespace builds included',
+              'One active request at a time',
+              'Fresh work every 48 hours',
+              'Direct partnership with the founder',
               'Pause or cancel anytime',
             ]}
-            cta="Claim your spot"
+            cta="Apply for a founding spot"
+            note="Founding rate locked for 6 months · first 3 partners only"
           />
+          {/* Webflow — optional premium add-on */}
+          <div style={{ marginTop: 'var(--space-5)', display: 'flex', alignItems: 'center', gap: 16, background: 'var(--paper)', border: 'var(--bw) solid var(--line)', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-sm)', padding: '18px 20px' }}>
+            <span style={{ width: 44, height: 44, flex: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: 'var(--sky-300)', border: 'var(--bw) solid var(--line)', borderRadius: 'var(--radius-md)', fontSize: 22 }}><i className="ph-bold ph-code" /></span>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 16, letterSpacing: '-.01em' }}>Custom Webflow development</div>
+              <div style={{ fontSize: 14, color: 'var(--ink-soft)' }}>Fully custom, CMS-driven builds — add when you need it.</div>
+            </div>
+            <span style={{ flex: 'none', fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 17, whiteSpace: 'nowrap' }}>+$1,000<span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--ink-soft)', fontWeight: 700 }}>/mo</span></span>
+          </div>
+          <p style={{ textAlign: 'center', fontSize: 13.5, color: 'var(--ink-soft)', margin: '18px 0 0' }}>
+            After the founding program, partners move to the standard rate or a custom agreement.
+          </p>
         </div>
       </div>
     </section>
@@ -67,8 +65,8 @@ function Pricing({ refEl, onNav }) {
 const FAQS = [
   ["Why shouldn't I just hire a full-time designer?",
    "Hiring a senior in-house designer means salary, tools, onboarding, and downtime. Hongix gives you that same strategic eye on demand, so you only pay for the design support you actually need."],
-  ["Is there a limit to the number of requests I can make?",
-   "Not at all. Load up your Kanban board with as many tasks as you need. Requests are systematically tackled one active task at a time until your entire queue is clear."],
+  ["How many requests can I have in my queue?",
+   "Queue as much as you like. We work one active request at a time so every deliverable gets senior-level focus, moving through your queue with fresh work on a 48-hour cadence."],
   ["How fast will my designs be delivered?",
    "Most standard tasks — like social assets or landing page mockups — are delivered within 48 hours. For larger builds like a full website, the project is divided into milestones so you still see fresh progress every couple of days."],
   ["How exactly does the pause feature work?",
@@ -78,7 +76,7 @@ const FAQS = [
   ["Are there any creative services you do not cover?",
    "To keep speed and quality high, Hongix stays focused on core design. That means no 3D modeling, heavy document typesetting, complex custom app architecture, or non-design work like copywriting, strategy, and SEO research."],
   ["Do you offer refunds if I change my mind?",
-   "Because of the intensive nature of the work and the immediate time invested, refunds are not offered. However, the unlimited revision policy guarantees revisions continue until you are absolutely thrilled with your deliverables."],
+   "Because of the intensive nature of the work and the immediate time invested, refunds are not offered. Instead, we keep refining each request until you are absolutely thrilled with the result."],
 ];
 
 function Faq({ refEl }) {
@@ -174,7 +172,7 @@ const FOOT_NAV = {
   'Pricing': 'pricing',
   'FAQ': 'faq',
   'Book a call': 'call',
-  'Join waitlist': 'waitlist',
+  'Apply': 'waitlist',
 };
 
 function Footer({ onNav }) {
@@ -201,7 +199,7 @@ function Footer({ onNav }) {
             </div>
           </div>
           <FootCol title="Hongix" links={['Work', 'How it works', 'Pricing', 'FAQ']} onNav={onNav} />
-          <FootCol title="Connect" links={['Book a call', 'Join waitlist', 'hello@hongix.com', 'Instagram']} onNav={onNav} />
+          <FootCol title="Connect" links={['Book a call', 'Apply', 'hello@hongix.com', 'Instagram']} onNav={onNav} />
         </div>
         <div style={{ borderTop: '1px solid rgba(255,246,226,.16)', marginTop: 'var(--space-7)', paddingTop: 'var(--space-5)', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12, fontSize: 13, color: 'rgba(255,246,226,.6)', fontFamily: 'var(--font-mono)' }}>
           <span>© 2026 HONGIX DESIGN LABS</span>
