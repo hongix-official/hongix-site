@@ -39,7 +39,11 @@ you don't need to touch the site.
 - The site posts with `mode: 'no-cors'` (Apps Script can't send CORS headers), so
   the browser can't read the response — the **sheet is the source of truth**. The
   form shows a success state once the request is sent.
-- Want an email alert on each signup? Add this inside `doPost`, after `appendRow`:
-  ```js
-  MailApp.sendEmail('hi@hongix.studio', 'New waitlist signup', name + ' — ' + email + ' (' + plan + ')');
-  ```
+- **Email on each signup is built in.** `Code.gs` emails `NOTIFY_EMAIL` (top of the
+  file, default `hi@hongix.studio`) whenever a row is saved. Change it to whatever
+  inbox you check, or set it to `''` to turn notifications off. The email is sent
+  *from* the Google account that owns the sheet. Note Google's free MailApp quota
+  is ~100 emails/day, which is plenty for a waitlist.
+- **After editing `Code.gs` you must redeploy a new version** for changes to take
+  effect (Deploy → Manage deployments → pencil → Version: New version → Deploy).
+  The `/exec` URL stays the same, so the site needs no change.
