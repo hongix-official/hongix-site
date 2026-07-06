@@ -10,9 +10,13 @@ import './sections/Sections4.jsx';
 import { WaitlistModal } from './waitlist.jsx';
 
 const {
-  Header, Hero, About, Steps, Services,
+  Header, Hero, TrustBar, About, Steps, Services,
   Audience, WhyHongix, Testimonials, Pricing, Faq, BookCall, Footer,
 } = window;
+
+// NOTE: TrustBar (stats) and Testimonials are intentionally not rendered yet —
+// no track record / real testimonials to show. The components are kept in the
+// section files; re-enable them below when we have real numbers and quotes.
 
 function App() {
   const [waitlist, setWaitlist] = React.useState({ open: false, plan: null });
@@ -31,13 +35,14 @@ function App() {
       <Header onNav={onNav} />
       <main>
         <Hero onNav={onNav} />
+        {/* <TrustBar />  ← re-enable when we have real stats */}
         <About />
         <Steps />
         <Services />
         <Audience />
         <WhyHongix />
         <Pricing onNav={onNav} />
-        <Testimonials />
+        {/* <Testimonials />  ← re-enable when we have real client testimonials */}
         <Faq />
         <BookCall />
       </main>
