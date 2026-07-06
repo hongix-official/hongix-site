@@ -134,7 +134,9 @@ function CalEmbed() {
 
   return (
     <div style={{ background: 'var(--paper)', border: 'var(--bw) solid var(--line)', borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-md)', padding: 10 }}>
-      <div id="hx-cal" style={{ width: '100%', minHeight: 560, overflow: 'hidden', borderRadius: 'var(--radius-lg)', background: 'var(--paper)' }} />
+      {/* Capped height + internal scroll so the long slot list doesn't stretch the page.
+          Shows the month calendar and the first times; the rest scrolls inside the card. */}
+      <div id="hx-cal" style={{ width: '100%', height: 'min(620px, 82vh)', overflowY: 'auto', overflowX: 'hidden', borderRadius: 'var(--radius-lg)', background: 'var(--paper)', WebkitOverflowScrolling: 'touch' }} />
     </div>
   );
 }
