@@ -133,7 +133,7 @@ function CalEmbed() {
   }, []);
 
   return (
-    <div style={{ background: 'var(--paper)', border: 'var(--bw) solid var(--line)', borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-md)', padding: 10 }}>
+    <div className="hx-book-embed" style={{ background: 'var(--paper)', border: 'var(--bw) solid var(--line)', borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-md)', padding: 10 }}>
       {/* Capped height + internal scroll so the long slot list doesn't stretch the page.
           Shows the month calendar and the first times; the rest scrolls inside the card. */}
       <div id="hx-cal" style={{ width: '100%', height: 'min(620px, 82vh)', overflowY: 'auto', overflowX: 'hidden', borderRadius: 'var(--radius-lg)', background: 'var(--paper)', WebkitOverflowScrolling: 'touch' }} />
@@ -145,7 +145,7 @@ function BookCall({ refEl }) {
   return (
     <section id="call" ref={refEl} className="hx-section" style={{ background: 'var(--cream-deep)' }}>
       <div className="hx-container">
-        <div className="hx-book-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-8)', alignItems: 'center', background: 'var(--grad-sunrise)', border: 'var(--bw) solid var(--line)', borderRadius: 'var(--radius-2xl)', boxShadow: 'var(--shadow-xl)', padding: 'var(--space-8)' }}>
+        <div className="hx-book-grid hx-book-card" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-8)', alignItems: 'center', background: 'var(--grad-sunrise)', border: 'var(--bw) solid var(--line)', borderRadius: 'var(--radius-2xl)', boxShadow: 'var(--shadow-xl)', padding: 'var(--space-8)' }}>
           <div>
             <Badge4 tone="ink" dot>15-minute discovery call</Badge4>
             <h2 style={{ fontSize: 'var(--text-3xl)', margin: '16px 0 0', textWrap: 'balance', maxWidth: '20ch' }}>Not sure where to start? <span className="hx-serif">Let's talk.</span></h2>

@@ -36,11 +36,11 @@ function App() {
       <main>
         <Hero onNav={onNav} />
         {/* <TrustBar />  ← re-enable when we have real stats */}
+        <WhyHongix />
+        <Audience />
         <About />
         <Steps />
         <Services />
-        <Audience />
-        <WhyHongix />
         <Pricing onNav={onNav} />
         {/* <Testimonials />  ← re-enable when we have real client testimonials */}
         <Faq />
