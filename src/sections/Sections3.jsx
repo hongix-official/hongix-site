@@ -49,7 +49,7 @@ function WhyHongix() {
       <div className="hx-container">
         <div style={{ textAlign: 'center', marginBottom: 'var(--space-7)' }}>
           <div style={{ marginBottom: 14, display: 'flex', justifyContent: 'center' }}><Badge3 tone="yellow" dot>Why Hongix</Badge3></div>
-          <h2 style={{ fontSize: 'var(--text-3xl)', margin: 0, lineHeight: 1.12, textWrap: 'balance', maxWidth: '18ch', marginLeft: 'auto', marginRight: 'auto', color: 'var(--cream)' }}>Design shouldn't be the <span className="hx-serif" style={{ color: 'var(--yellow-400)' }}>bottleneck.</span></h2>
+          <h2 style={{ fontSize: 'clamp(2rem, 1.1rem + 3vw, 3.4rem)', margin: 0, lineHeight: 1.12, textWrap: 'balance', maxWidth: 'none', marginLeft: 'auto', marginRight: 'auto', color: 'var(--cream)' }}>Design shouldn't be the <span className="hx-serif" style={{ color: 'var(--yellow-400)' }}>bottleneck.</span></h2>
           <p style={{ fontSize: 'var(--text-md)', color: 'rgba(255,246,226,.72)', margin: '14px auto 0', maxWidth: '52ch' }}>
             Your ideas shouldn't sit in someone's inbox for two weeks. Submit a request and get finished work back every 48 hours, while your competitors are still scheduling kickoff calls.
           </p>

@@ -40,6 +40,8 @@
     .hx-steps-grid, .hx-work-grid, .hx-why-grid, .hx-price-grid, .hx-trust-grid, .hx-portfolio { grid-template-columns: 1fr !important; }
   }
   @media (max-width: 560px) { .hx-hide-sm { display: none !important; } }
+  /* Header: drop the secondary CTA on narrow phones so the pill never overflows */
+  @media (max-width: 640px) { .hx-hide-hdrcta { display: none !important; } }
 
   /* Hero sub-headline stamp — "stamped down" wobble on load; always visible (transform-only, no fade) */
   @media (prefers-reduced-motion: no-preference) {

@@ -123,7 +123,7 @@ function Header({ onNav }) {
             <NavPill href="#faq" onClick={(e) => { e.preventDefault(); onNav('faq'); }}>FAQ</NavPill>
           </nav>
           <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 10 }}>
-            <Button variant="ghost" size="sm" iconLeft="ph-sparkle" onClick={() => onNav('waitlist')}>Join Waitlist</Button>
+            <Button className="hx-hide-hdrcta" variant="ghost" size="sm" iconLeft="ph-sparkle" onClick={() => onNav('waitlist')}>Join Waitlist</Button>
             <Button variant="primary" size="sm" iconLeft="ph-phone-call" onClick={() => onNav('call')}>Book a call</Button>
           </div>
         </div>
