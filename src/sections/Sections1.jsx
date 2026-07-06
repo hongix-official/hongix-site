@@ -215,7 +215,7 @@ function Hero({ onNav }) {
         <div className="hx-hero-grid" style={{ display: 'grid', gridTemplateColumns: '1.1fr .9fr', gap: 'var(--space-8)', alignItems: 'center' }}>
           <div>
             <h1 style={{ fontSize: 'clamp(2.5rem, 1.5rem + 3.4vw, 4rem)', margin: 0, lineHeight: 1.04 }}>
-              Your design support to launch, scale, and <span className="hx-serif">stand&nbsp;out</span>
+              Your design support to launch, scale and <span className="hx-serif">stand&nbsp;out</span>
             </h1>
             <p style={{ margin: '22px 0 0' }}>
               <span className="hx-stamp" style={{

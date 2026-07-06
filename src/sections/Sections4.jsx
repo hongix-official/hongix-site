@@ -86,7 +86,7 @@ function Faq({ refEl }) {
   return (
     <section id="faq" ref={refEl} className="hx-section">
       <div className="hx-container" style={{ maxWidth: 820 }}>
-        <SH4 align="center" eyebrow="FAQ" title={<>Questions, <span className="hx-serif">answered</span></>} />
+        <SH4 align="center" eyebrow="FAQ" title={<>Questions, <span className="hx-serif">answered</span>.</>} />
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           {FAQS.map(([q, a], i) => (
             <FaqItem key={i} question={q} open={open === i} onToggle={(n) => setOpen(n ? i : -1)}>{a}</FaqItem>

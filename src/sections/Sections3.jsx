@@ -3,20 +3,20 @@ const { Card: Card3, Badge: Badge3, Avatar: Avatar3 } = window.HongixDesignSyste
 const SH3 = window.SectionHead;
 
 const AUDIENCE = [
-  ['ph-rocket-launch', 'yellow', 'The "zero-to-one" launch',
-    "You are building from scratch, but your pitch deck and website don't reflect your vision. You need investor-ready branding — without the $100k salary of a full-time hire."],
-  ['ph-lightning', 'coral', 'The campaign engine',
-    "You need a relentless stream of social content, ads, or landing pages to keep your audience engaged. You need a fast, reliable partner to keep the assets flowing."],
-  ['ph-puzzle-piece', 'sky', 'The flexible extension',
-    "You need execution, not headcount. Short-term cover or long-term partner, you need an expert ready to step in and hit the ground running."],
+  ['ph-rocket-launch', 'yellow', 'The founder getting off the ground',
+    "You're building from scratch, but your pitch deck and website don't reflect your vision. You need investor-ready branding, without the $100k salary of a full-time hire."],
+  ['ph-handshake', 'sky', 'The team that needs hands, not headcount',
+    "You're stretched thin and can't wait months to hire. You need an expert who steps in and hits the ground running without adding to payroll."],
+  ['ph-lightning', 'coral', 'The marketing team that never slows down',
+    "You're running a relentless stream of social content, ads and landing pages to keep your audience engaged. You need a fast, reliable partner to keep the assets flowing."],
 ];
 
 function Audience() {
   return (
     <section className="hx-section">
       <div className="hx-container">
-        <SH3 align="center" eyebrow="Who it's for" title={<>Who Hongix is <span className="hx-serif">built for</span></>}
-          maxw="none" sub="Good design drives growth. Getting it done shouldn't be a nightmare." />
+        <SH3 align="center" eyebrow="Who it's for" title={<>Who Hongix is <span className="hx-serif">built for</span>.</>}
+          maxw="none" sub="Good design drives growth. Hongix makes getting it done the easy part." />
         <div className="hx-steps-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-5)' }}>
           {AUDIENCE.map(([ic, tone, title, body], i) => {
             const tones = { yellow: 'var(--yellow-300)', coral: 'var(--coral-300)', sky: 'var(--sky-300)' };
@@ -49,9 +49,9 @@ function WhyHongix() {
       <div className="hx-container">
         <div style={{ textAlign: 'center', marginBottom: 'var(--space-7)' }}>
           <div style={{ marginBottom: 14, display: 'flex', justifyContent: 'center' }}><Badge3 tone="yellow" dot>Why Hongix</Badge3></div>
-          <h2 style={{ fontSize: 'var(--text-3xl)', margin: 0, lineHeight: 1.12, textWrap: 'balance', maxWidth: 'none', marginLeft: 'auto', marginRight: 'auto', color: 'var(--cream)' }}>Fast execution. <span className="hx-serif" style={{ color: 'var(--yellow-400)' }}>Zero friction.</span></h2>
-          <p style={{ fontSize: 'var(--text-md)', color: 'rgba(255,246,226,.72)', margin: '14px auto 0', maxWidth: 'none' }}>
-            Say goodbye to messy spreadsheets, unpredictable invoices, and lagging timelines.
+          <h2 style={{ fontSize: 'var(--text-3xl)', margin: 0, lineHeight: 1.12, textWrap: 'balance', maxWidth: '18ch', marginLeft: 'auto', marginRight: 'auto', color: 'var(--cream)' }}>Design shouldn't be the <span className="hx-serif" style={{ color: 'var(--yellow-400)' }}>bottleneck.</span></h2>
+          <p style={{ fontSize: 'var(--text-md)', color: 'rgba(255,246,226,.72)', margin: '14px auto 0', maxWidth: '52ch' }}>
+            Your ideas shouldn't sit in someone's inbox for two weeks. Submit a request and get finished work back every 48 hours, while your competitors are still scheduling kickoff calls.
           </p>
         </div>
         <div className="hx-why-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--space-5)' }}>

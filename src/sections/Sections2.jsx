@@ -78,9 +78,9 @@ function About() {
             <AboutArt />
           </div>
           <div>
-            <SectionHead size="sm" eyebrow="Who is Hongix" title={<>Handled <span className="hx-serif hx-serif--accent">personally</span>, crafted with care</>} />
+            <SectionHead size="sm" eyebrow="Who is Hongix" title={<>Handled <span className="hx-serif hx-serif--accent">personally</span>, crafted with care.</>} />
             <p style={{ fontSize: 'var(--text-md)', color: 'var(--ink-soft)', maxWidth: '54ch' }}>
-              Hongix is your design partner for one flat monthly rate. Every project is thoughtfully designed by the founder, Gitta. To protect that focus, Hongix works with only a select few clients at a time, so your creative work gets the dedicated attention it deserves.
+              Every project is thoughtfully designed by the founder, Gitta, who brings over 5 years of design experience across agency and client work. Hongix works with only a select few clients at a time, so your creative work gets the dedicated attention it deserves.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginTop: 22 }}>
               <Tag icon="ph-user-focus">One designer, fully invested</Tag>
@@ -98,7 +98,7 @@ function Steps({ refEl }) {
   return (
     <section id="how" ref={refEl} className="hx-section">
       <div className="hx-container">
-        <SectionHead align="center" eyebrow="How it works" title={<>How the <span className="hx-serif">subscription</span> works</>}
+        <SectionHead align="center" eyebrow="How it works" title={<>How the <span className="hx-serif">subscription</span> works.</>}
           titleMaxw="none" maxw="none" sub="Get your design needs done with a simple, three-step system." />
         <div className="hx-steps-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-5)' }}>
           <StepCard step="1" icon="ph-kanban" iconTone="yellow" title="Subscribe & queue">
@@ -118,7 +118,7 @@ function Steps({ refEl }) {
 
 const SERVICES = [
   ['ph-browser', 'Website design'], ['ph-cursor-click', 'UI/UX design'], ['ph-pen-nib', 'Logos & branding'],
-  ['ph-instagram-logo', 'Social media content'], ['ph-megaphone', 'Ad assets'], ['ph-presentation-chart', 'Slide decks'],
+  ['ph-instagram-logo', 'Social media content'], ['ph-megaphone', 'Ad assets'],
   ['ph-newspaper', 'Print design'], ['ph-code', 'Framer / Webflow development*'], ['ph-dots-three-circle', 'and more'],
 ];
 
@@ -168,7 +168,7 @@ function Services({ refEl }) {
   return (
     <section id="work" ref={refEl} className="hx-section" style={{ background: 'var(--cream-deep)' }}>
       <div className="hx-container">
-        <SectionHead size="sm" eyebrow="Services & portfolio" titleMaxw="none" maxw="none" title={<>What you can drop in your <span className="hx-serif">queue</span></>}
+        <SectionHead size="sm" eyebrow="Services & portfolio" titleMaxw="none" maxw="none" title={<>What you can drop in your <span className="hx-serif">queue</span>.</>}
           sub="One subscription covers the full range of creative work your brand needs." />
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginBottom: 'var(--space-8)' }}>
           {SERVICES.map(([ic, l], i) => <Tag key={i} icon={ic} interactive>{l}</Tag>)}

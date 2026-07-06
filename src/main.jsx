@@ -10,7 +10,7 @@ import './sections/Sections4.jsx';
 import { WaitlistModal } from './waitlist.jsx';
 
 const {
-  Header, Hero, TrustBar, About, Steps, Services,
+  Header, Hero, About, Steps, Services,
   Audience, WhyHongix, Testimonials, Pricing, Faq, BookCall, Footer,
 } = window;
 
@@ -31,7 +31,6 @@ function App() {
       <Header onNav={onNav} />
       <main>
         <Hero onNav={onNav} />
-        <TrustBar />
         <About />
         <Steps />
         <Services />
