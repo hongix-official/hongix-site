@@ -201,7 +201,7 @@ function Footer({ onNav }) {
             </div>
           </div>
           <FootCol title="Hongix" links={['Work', 'How it works', 'Pricing', 'FAQ']} onNav={onNav} />
-          <FootCol title="Connect" links={['Book a call', 'Join waitlist', 'hi@hongix.studio', 'Instagram']} onNav={onNav} />
+          <FootCol title="Connect" links={['Book a call', 'Join waitlist', 'hello@hongix.com', 'Instagram']} onNav={onNav} />
         </div>
         <div style={{ borderTop: '1px solid rgba(255,246,226,.16)', marginTop: 'var(--space-7)', paddingTop: 'var(--space-5)', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12, fontSize: 13, color: 'rgba(255,246,226,.6)', fontFamily: 'var(--font-mono)' }}>
           <span>© 2026 HONGIX DESIGN LABS</span>

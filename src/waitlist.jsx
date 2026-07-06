@@ -76,7 +76,7 @@ export function WaitlistModal({ open, plan, onClose }) {
       setStatus('done');
     } catch (err) {
       setStatus('error');
-      setError('Something went wrong sending your details. Please try again or email hi@hongix.studio.');
+      setError('Something went wrong sending your details. Please try again or email hello@hongix.com.');
     }
   };
 

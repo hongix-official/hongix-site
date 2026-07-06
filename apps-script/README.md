@@ -40,7 +40,7 @@ you don't need to touch the site.
   the browser can't read the response — the **sheet is the source of truth**. The
   form shows a success state once the request is sent.
 - **Email on each signup is built in.** `Code.gs` emails `NOTIFY_EMAIL` (top of the
-  file, default `hi@hongix.studio`) whenever a row is saved. Change it to whatever
+  file, default `hello@hongix.com`) whenever a row is saved. Change it to whatever
   inbox you check, or set it to `''` to turn notifications off. The email is sent
   *from* the Google account that owns the sheet. Note Google's free MailApp quota
   is ~100 emails/day, which is plenty for a waitlist.

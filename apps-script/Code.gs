@@ -16,7 +16,7 @@ const SHEET_NAME = 'Waitlist';
 
 // Where new-signup notifications are emailed. Change to whatever inbox you check.
 // (Leave empty '' to turn email notifications off.)
-const NOTIFY_EMAIL = 'hi@hongix.studio';
+const NOTIFY_EMAIL = 'hello@hongix.com';
 
 function doPost(e) {
   try {
