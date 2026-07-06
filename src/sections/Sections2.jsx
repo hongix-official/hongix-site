@@ -123,7 +123,7 @@ const SERVICE_GROUPS = [
     ['ph-cursor-click', 'UX improvements'], ['ph-flow-arrow', 'User flows'], ['ph-squares-four', 'Design systems'],
   ]],
   ['Launch', 'ph-rocket-launch', 'var(--yellow-300)', [
-    ['ph-browser', 'Landing pages'], ['ph-globe', 'Marketing websites'], ['ph-presentation-chart', 'Pitch decks'],
+    ['ph-browser', 'Landing pages'], ['ph-globe', 'Marketing websites'],
     ['ph-flag', 'Product launches'], ['ph-pen-nib', 'Brand identity'],
   ]],
   ['Growth', 'ph-trend-up', 'var(--coral-300)', [
@@ -187,8 +187,8 @@ function Services({ refEl }) {
                 <span style={{ width: 40, height: 40, flex: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: tone, border: 'var(--bw) solid var(--line)', borderRadius: 'var(--radius-md)', boxShadow: 'var(--shadow-xs)', fontSize: 20 }}><i className={`ph-bold ${gic}`} /></span>
                 <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 20, letterSpacing: '-.02em' }}>{group}</span>
               </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
-                {items.map(([ic, l], j) => <Tag key={j} icon={ic}>{l}</Tag>)}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+                {items.map(([ic, l], j) => <Tag key={j} icon={ic} style={{ width: '100%' }}>{l}</Tag>)}
               </div>
             </div>
           ))}

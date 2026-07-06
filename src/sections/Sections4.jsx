@@ -25,7 +25,7 @@ function Pricing({ refEl, onNav }) {
       <div className="hx-container">
         <SH4 align="center" eyebrow="Pricing" title={<>One partner, <span className="hx-serif">one</span> clear price.</>}
           maxw="none" sub="A predictable monthly partnership — pause or cancel anytime. No contracts, no retainer minimums." />
-        <div style={{ maxWidth: 460, margin: '0 auto' }}>
+        <div className="hx-price-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-6)', maxWidth: 920, margin: '0 auto', alignItems: 'stretch' }}>
           <PlanCard
             plan="Hongix Partner"
             onNav={onNav}
@@ -44,19 +44,31 @@ function Pricing({ refEl, onNav }) {
             cta="Apply for a founding spot"
             note="Founding rate locked for 6 months · first 3 partners only"
           />
-          {/* Webflow — optional premium add-on */}
-          <div style={{ marginTop: 'var(--space-5)', display: 'flex', alignItems: 'center', gap: 16, background: 'var(--paper)', border: 'var(--bw) solid var(--line)', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-sm)', padding: '18px 20px' }}>
-            <span style={{ width: 44, height: 44, flex: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: 'var(--sky-300)', border: 'var(--bw) solid var(--line)', borderRadius: 'var(--radius-md)', fontSize: 22 }}><i className="ph-bold ph-code" /></span>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 16, letterSpacing: '-.01em' }}>Custom Webflow development</div>
-              <div style={{ fontSize: 14, color: 'var(--ink-soft)' }}>Fully custom, CMS-driven builds — add when you need it.</div>
+          {/* Webflow — optional add-on, presented as its own card */}
+          <div style={{ background: 'var(--paper)', border: 'var(--bw) solid var(--line)', borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-md)', padding: 32, display: 'flex', flexDirection: 'column', gap: 18, height: '100%' }}>
+            <Badge4 tone="sky" dot>Optional add-on</Badge4>
+            <div>
+              <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 24, letterSpacing: '-.02em', margin: 0 }}>Custom Webflow development</h3>
+              <p style={{ fontSize: 15, lineHeight: 1.5, color: 'var(--ink-soft)', margin: '8px 0 0' }}>For teams that need a fully custom, CMS-driven website built and maintained.</p>
             </div>
-            <span style={{ flex: 'none', fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 17, whiteSpace: 'nowrap' }}>+$1,000<span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--ink-soft)', fontWeight: 700 }}>/mo</span></span>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, flexWrap: 'wrap' }}>
+              <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 44, letterSpacing: '-.03em', lineHeight: 1 }}>+$1,000</span>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: 'var(--ink-soft)' }}>USD / month</span>
+            </div>
+            <hr style={{ border: 'none', borderTop: '1px solid var(--line)', margin: '2px 0' }} />
+            <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 11, flex: '1 0 auto' }}>
+              {['Fully custom Webflow build', 'Complex architectures & CMS', 'Ongoing maintenance & updates', 'Added on top of your partner plan'].map((f, i) => (
+                <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontFamily: 'var(--font-body)', fontSize: 15.5, color: 'var(--ink)', lineHeight: 1.4 }}>
+                  <span style={{ flex: 'none', width: 24, height: 24, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: 'var(--sky-400)', borderRadius: 999, color: 'var(--paper)', fontSize: 14, marginTop: 1 }}><i className="ph-bold ph-check" aria-hidden="true" /></span>{f}
+                </li>
+              ))}
+            </ul>
+            <p style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 700, letterSpacing: '.04em', color: 'var(--ink-soft)', textAlign: 'center', margin: 0 }}>Just mention it when you apply</p>
           </div>
-          <p style={{ textAlign: 'center', fontSize: 13.5, color: 'var(--ink-soft)', margin: '18px 0 0' }}>
-            After the founding program, partners move to the standard rate or a custom agreement.
-          </p>
         </div>
+        <p style={{ textAlign: 'center', fontSize: 13.5, color: 'var(--ink-soft)', margin: 'var(--space-5) auto 0', maxWidth: 480 }}>
+          After the founding program, partners move to the standard rate or a custom agreement.
+        </p>
       </div>
     </section>
   );
