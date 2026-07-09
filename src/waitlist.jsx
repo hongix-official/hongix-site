@@ -103,7 +103,7 @@ export function WaitlistModal({ open, plan, onClose }) {
           <>
             <img src="/assets/logomark.svg" alt="" style={{ width: 48, height: 48, marginBottom: 14 }} />
             <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 24, margin: '0 0 6px' }}>Apply for a founding spot</h3>
-            <p style={{ color: 'var(--ink-soft)', margin: '0 0 22px' }}>Just 3 founding partner spots. Tell us a little about you and we'll be in touch.</p>
+            <p style={{ color: 'var(--ink-soft)', margin: '0 0 22px' }}>Just 2 founding partner spots. Tell us a little about you and we'll be in touch.</p>
 
             <form onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               <div>

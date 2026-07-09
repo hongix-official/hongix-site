@@ -14,7 +14,7 @@ with SPEC.md, **the positioning wins** — flag the conflict, don't ship it.
 Hard rules from the constitution (common violations to avoid):
 - Never say "unlimited requests/revisions", "AI-powered", "discount/sale".
 - Sell outcomes (momentum, launches, conversion), not deliverables (Figma files, graphics).
-- Pricing: US$3,999 public · US$2,999 Founding Partner (first 3, locked 6 months). USD only.
+- Pricing: US$3,999 public · US$2,999 Founding Partner (next 2, locked 6 months). USD only.
 - Tone: calm, confident, understated (Apple/Linear/Vercel/Stripe) — never loud/salesy/cheap.
 
 ## Project

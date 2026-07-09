@@ -128,7 +128,7 @@ Support design across the startup lifecycle. **Group around customer outcomes, n
 
 - **Public price:** US$3,999 / month
 - **Founding Partner:** US$2,999 / month
-- **Limit:** First 3 founding partners
+- **Limit:** Next 2 founding partners
 - **Founding rate locked for the first six months.** After six months the client
   moves to the standard rate or a custom agreement.
 

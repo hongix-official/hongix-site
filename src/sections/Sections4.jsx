@@ -32,7 +32,7 @@ function Pricing({ refEl, onNav }) {
             featured
             name="Hongix Partner"
             description="Ongoing senior design across product, launch, and growth — one predictable partner."
-            badge="Founding Partner · 3 spots" was="$3,999" now="$2,999" per="USD / month"
+            badge="Founding Partner · 2 spots" was="$3,999" now="$2,999" per="USD / month"
             features={[
               'Product, launch & growth design',
               'Framer & Squarespace builds included',
@@ -42,7 +42,7 @@ function Pricing({ refEl, onNav }) {
               'Pause or cancel anytime',
             ]}
             cta="Apply for a founding spot"
-            note="Founding rate locked for 6 months · first 3 partners only"
+            note="Founding rate locked for 6 months · next 2 partners only"
           />
           {/* Webflow — optional add-on, presented as its own card */}
           <div style={{ background: 'var(--paper)', border: 'var(--bw) solid var(--line)', borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-md)', padding: 32, display: 'flex', flexDirection: 'column', gap: 18, height: '100%' }}>
