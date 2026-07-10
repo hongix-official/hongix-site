@@ -22,6 +22,9 @@ Vite static site → Cloudflare Pages (project `hongix`) → **hongix.com**.
 Built from the Hongix Design System; React is vendored as a global.
 
 - Dev: `npm run dev` · Build: `npm run build` · Preview: `npm run preview`
+- `npm run build` runs `vite build` **then `node prerender.mjs`** (headless Chromium
+  snapshots the rendered app into `dist/index.html` for SEO). Always build before
+  deploying so crawlers get rendered content; the client JS still hydrates on load.
 - Deploy: `npx wrangler pages deploy dist --project-name hongix --branch main`
 - Config to edit: `src/config.js` (`WAITLIST_ENDPOINT`, `CAL_LINK`).
 - Sections live in `src/sections/Sections1–4.jsx`; page order in `src/main.jsx`.
