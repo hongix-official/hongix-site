@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesk:wght@400..800&family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; }
+  body {
+    font-family: 'Hanken Grotesk', sans-serif;
+    color: #1C1606;
+    background-color: #FDFBF4;
+    background-image: radial-gradient(rgba(70,52,18,.06) 1px, transparent 1.2px);
+    background-size: 22px 22px;
+    background-position: -6px -6px;
+    position: relative;
+    overflow: hidden;
+  }
+  .wrap { position: absolute; inset: 0; padding: 78px 84px; display: flex; flex-direction: column; justify-content: space-between; }
+
+  /* Wordmark */
+  .brand { display: inline-flex; align-items: center; gap: 8px; }
+  .brand .mark { display: inline-flex; align-items: center; font-family: 'Bricolage Grotesque'; font-weight: 800; font-size: 46px; letter-spacing: -.04em; color: #1C1606; line-height: 1; }
+  .brand .sub { font-family: 'Bricolage Grotesque'; font-weight: 700; font-size: 22px; letter-spacing: .01em; color: rgba(28,22,6,.5); white-space: nowrap; }
+
+  .eyebrow { font-family: 'Space Mono'; font-weight: 700; font-size: 20px; letter-spacing: .18em; text-transform: uppercase; color: #8A8068; margin-bottom: 22px; }
+  h1 { font-family: 'Bricolage Grotesque'; font-weight: 800; font-size: 74px; line-height: 1.04; letter-spacing: -.03em; max-width: 15ch; }
+  .serif { font-family: 'Instrument Serif'; font-style: italic; font-weight: 400; font-size: 1.06em; }
+
+  .foot { display: flex; align-items: center; gap: 18px; }
+  .stamp { display: inline-block; font-family: 'Bricolage Grotesque'; font-weight: 800; font-size: 24px; color: #FFF6E2; background: #FF5A36; padding: 10px 22px 12px; border-radius: 12px; transform: rotate(-2.5deg); box-shadow: 0 6px 16px rgba(38,28,8,.14); }
+  .url { font-family: 'Space Mono'; font-weight: 700; font-size: 22px; color: #4A4231; letter-spacing: .02em; }
+
+  /* Decorative sunrise sparkle, top-right (mirrors the hero) */
+  .spark { position: absolute; top: 64px; right: 84px; width: 132px; height: 132px; filter: drop-shadow(0 10px 22px rgba(236,90,26,.28)); }
+  .blob { position: absolute; right: -140px; bottom: -160px; width: 460px; height: 460px; border-radius: 50%; background: linear-gradient(135deg, #FFCF4D 0%, #FF5A36 58%, #FF63B5 100%); opacity: .16; }
+</style>
+</head>
+<body>
+  <div class="blob"></div>
+  <svg class="spark" viewBox="0 0 100 100">
+    <defs><linearGradient id="g" x1="0.1" y1="0" x2="0.9" y2="1"><stop offset="0" stop-color="#FFA23E"/><stop offset="1" stop-color="#EC5A1A"/></linearGradient></defs>
+    <path transform="rotate(-8 50 50)" d="M50 8 C56 36 64 44 92 50 C64 56 56 64 50 92 C44 64 36 56 8 50 C36 44 44 36 50 8 Z" fill="url(#g)" stroke="#1C1606" stroke-width="2.5" stroke-linejoin="round"/>
+  </svg>
+
+  <div class="wrap">
+    <div class="brand">
+      <span class="mark">hongi<svg viewBox="0 0 100 100" style="width:44px;height:48px;margin:0 -2px;overflow:visible" role="img" aria-label="x">
+        <defs><linearGradient id="hx" x1="0.1" y1="0" x2="0.9" y2="1"><stop offset="0" stop-color="#FFA23E"/><stop offset="1" stop-color="#EC5A1A"/></linearGradient></defs>
+        <path transform="rotate(45 50 50)" d="M50 13 C55 35 65 45 87 50 C65 55 55 65 50 87 C45 65 35 55 13 50 C35 45 45 35 50 13 Z" fill="url(#hx)" stroke="url(#hx)" stroke-width="10" stroke-linejoin="round"/>
+      </svg></span>
+      <span class="sub">Design Labs</span>
+    </div>
+
+    <div>
+      <div class="eyebrow">Design subscription</div>
+      <h1>Your <span class="serif">design partner</span> for founders &amp; growing brands</h1>
+    </div>
+
+    <div class="foot">
+      <span class="stamp">In one subscription</span>
+      <span class="url">hongix.com</span>
+    </div>
+  </div>
+</body>
+</html>
