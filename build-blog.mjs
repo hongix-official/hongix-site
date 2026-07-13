@@ -5,8 +5,17 @@
    Runs after `vite build` (see package.json). Blog pages are pure static HTML
    (no client JS needed) so they index fast and load instantly. */
 import { readFile, writeFile, mkdir, readdir } from 'node:fs/promises';
+import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { marked } from 'marked';
+
+// Load .env (no dependency) so NOTION_TOKEN / NOTION_DB reach notion.mjs.
+if (existsSync('.env')) {
+  for (const line of readFileSync('.env', 'utf8').split('\n')) {
+    const m = line.match(/^\s*([A-Z_][A-Z0-9_]*)\s*=\s*(.*)\s*$/i);
+    if (m && !process.env[m[1]]) process.env[m[1]] = m[2].trim().replace(/^["']|["']$/g, '');
+  }
+}
 
 const ROOT = process.cwd();
 const DIST = join(ROOT, 'dist');
@@ -17,11 +26,20 @@ const POSTS_DIR = join(ROOT, 'src/blog/posts');
 // Swap-in point for Notion: when NOTION_TOKEN + NOTION_DB are set we'll fetch
 // published rows here instead of reading local markdown. Same shape either way.
 async function getPosts() {
+  const local = await readLocalPosts();
   if (process.env.NOTION_TOKEN && process.env.NOTION_DB) {
-    const { fetchNotionPosts } = await import('./notion.mjs'); // added when token is ready
-    return fetchNotionPosts();
+    try {
+      const { fetchNotionPosts } = await import('./notion.mjs');
+      const notion = await fetchNotionPosts();
+      console.log(`[blog] Notion connected: ${notion.length} published post(s)`);
+      const bySlug = new Map(local.map((p) => [p.slug, p]));
+      for (const n of notion) bySlug.set(n.slug, n); // Notion wins on slug collision
+      return [...bySlug.values()].sort((a, b) => (a.date < b.date ? 1 : -1));
+    } catch (e) {
+      console.warn('[blog] Notion fetch failed, using local markdown only:', e.message);
+    }
   }
-  return readLocalPosts();
+  return local;
 }
 
 async function readLocalPosts() {
