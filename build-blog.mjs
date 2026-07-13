@@ -55,10 +55,11 @@ function parseFrontmatter(raw) {
     if (i === -1) continue;
     const key = line.slice(0, i).trim();
     let val = line.slice(i + 1).trim();
+    const unquote = (s) => ((s.startsWith('"') && s.endsWith('"')) || (s.startsWith("'") && s.endsWith("'")) ? s.slice(1, -1) : s);
     if (val.startsWith('[') && val.endsWith(']')) {
-      val = val.slice(1, -1).split(',').map((s) => s.trim().replace(/^["']|["']$/g, '')).filter(Boolean);
+      val = val.slice(1, -1).split(',').map((s) => unquote(s.trim())).filter(Boolean);
     } else {
-      val = val.replace(/^["']|["']$/g, '');
+      val = unquote(val);
     }
     data[key] = val;
   }

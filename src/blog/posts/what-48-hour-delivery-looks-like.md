@@ -2,7 +2,7 @@
 title: What a 48-hour design cadence actually looks like
 slug: what-48-hour-delivery-looks-like
 date: 2026-07-11
-excerpt: "Fast" is easy to promise and hard to sustain. Here's the working rhythm that keeps quality high without turning design into a fire drill.
+excerpt: Sustaining fast design is hard. Here's the working rhythm that keeps quality high without turning delivery into a fire drill.
 tags: [Process, Design]
 author: Gitta
 ---
