@@ -11,6 +11,7 @@
   },
   "devDependencies": {
     "playwright": "^1.61.1",
+    "png-to-ico": "^3.0.2",
     "vite": "^5.4.11"
   }
 }
