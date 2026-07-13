@@ -102,7 +102,7 @@ function Steps({ refEl }) {
           titleMaxw="none" maxw="none" sub="Get your design needs done with a simple, three-step system." />
         <div className="hx-steps-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-5)' }}>
           <StepCard step="1" icon="ph-kanban" iconTone="yellow" title="Subscribe & queue">
-            Get access to your dedicated board. Add your requests and priorities with all the context you want — briefs, links, Loom videos. No meetings required.
+            Get access to your dedicated board. Add your requests and priorities with all the context you want: briefs, links, Loom videos. No meetings required.
           </StepCard>
           <StepCard step="2" icon="ph-paint-brush-broad" iconTone="coral" title="The work begins">
             One active request at a time. Big projects are broken into milestones with early alignment, so you see purposeful progress every 48 hours.
