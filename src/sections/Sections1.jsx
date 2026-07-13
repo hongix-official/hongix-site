@@ -121,6 +121,7 @@ function Header({ onNav }) {
             <NavPill href="#how" onClick={(e) => { e.preventDefault(); onNav('how'); }}>How it works</NavPill>
             <NavPill href="#pricing" onClick={(e) => { e.preventDefault(); onNav('pricing'); }}>Pricing</NavPill>
             <NavPill href="#faq" onClick={(e) => { e.preventDefault(); onNav('faq'); }}>FAQ</NavPill>
+            <NavPill href="/blog/">Blog</NavPill>
           </nav>
           <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 10 }}>
             <Button className="hx-hide-hdrcta" variant="ghost" size="sm" iconLeft="ph-sparkle" onClick={() => onNav('waitlist')}>Apply</Button>

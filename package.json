@@ -6,10 +6,11 @@
   "description": "Hongix Design Labs marketing site — built from the Hongix Design System.",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node prerender.mjs",
+    "build": "vite build && node build-blog.mjs && node prerender.mjs",
     "preview": "vite preview --host"
   },
   "devDependencies": {
+    "marked": "^18.0.6",
     "playwright": "^1.61.1",
     "vite": "^5.4.11"
   }

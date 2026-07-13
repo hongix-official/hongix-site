@@ -210,7 +210,7 @@ function Footer({ onNav }) {
               <Btn4 variant="primary" iconRight="ph-arrow-right" onClick={() => onNav('pricing')}>View pricing</Btn4>
             </div>
           </div>
-          <FootCol title="Hongix" links={['Work', 'How it works', 'Pricing', 'FAQ']} onNav={onNav} />
+          <FootCol title="Hongix" links={['Work', 'How it works', 'Pricing', 'FAQ', 'Blog']} onNav={onNav} />
           <FootCol title="Connect" links={['Book a call', 'Apply', 'hello@hongix.com', 'Instagram']} onNav={onNav} />
         </div>
         <div style={{ borderTop: '1px solid rgba(255,246,226,.16)', marginTop: 'var(--space-7)', paddingTop: 'var(--space-5)', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12, fontSize: 13, color: 'rgba(255,246,226,.6)', fontFamily: 'var(--font-mono)' }}>
@@ -227,10 +227,10 @@ function Footer({ onNav }) {
 
 function FootCol({ title, links, onNav }) {
   const handle = (e, l) => {
-    if (l.includes('@')) return; // let mailto anchors work natively
+    if (l === 'Blog' || l.includes('@')) return; // Blog = real page link; mailto = native
     if (FOOT_NAV[l]) { e.preventDefault(); onNav(FOOT_NAV[l]); }
   };
-  const hrefFor = (l) => (l.includes('@') ? `mailto:${l}` : FOOT_NAV[l] ? `#${FOOT_NAV[l]}` : '#');
+  const hrefFor = (l) => (l === 'Blog' ? '/blog/' : l.includes('@') ? `mailto:${l}` : FOOT_NAV[l] ? `#${FOOT_NAV[l]}` : '#');
   return (
     <div>
       <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 700, letterSpacing: '.12em', textTransform: 'uppercase', color: 'rgba(255,246,226,.55)', marginBottom: 14 }}>{title}</div>
