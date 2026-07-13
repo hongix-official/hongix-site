@@ -1,12 +1,12 @@
 name: Publish site
 
 # Rebuilds from Notion + deploys to Cloudflare Pages.
-# - hourly: picks up new Notion posts automatically
+# - every 2h: picks up new Notion posts automatically (fits the free-tier minutes on a private repo)
 # - manual: "Run workflow" button in the Actions tab (instant publish)
 # - on push to main: redeploys code changes
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '0 */2 * * *'
   workflow_dispatch: {}
   push:
     branches: [main]
