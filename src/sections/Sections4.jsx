@@ -24,14 +24,14 @@ function Pricing({ refEl, onNav }) {
     <section id="pricing" ref={refEl} className="hx-section">
       <div className="hx-container">
         <SH4 align="center" eyebrow="Pricing" title={<>One partner, <span className="hx-serif">one</span> clear price.</>}
-          maxw="none" sub="A predictable monthly partnership — pause or cancel anytime. No contracts, no retainer minimums." />
+          maxw="none" sub="A predictable monthly partnership. Pause or cancel anytime. No contracts, no retainer minimums." />
         <div className="hx-price-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-6)', maxWidth: 920, margin: '0 auto', alignItems: 'stretch' }}>
           <PlanCard
             plan="Hongix Partner"
             onNav={onNav}
             featured
             name="Hongix Partner"
-            description="Ongoing senior design across product, launch, and growth — one predictable partner."
+            description="Ongoing senior design across product, launch, and growth, from one predictable partner."
             badge="Founding Partner · 2 spots" was="$3,999" now="$2,999" per="USD / month"
             features={[
               'Product, launch & growth design',
@@ -80,7 +80,7 @@ const FAQS = [
   ["How many requests can I have in my queue?",
    "Queue as much as you like. We work one active request at a time so every deliverable gets senior-level focus, moving through your queue with fresh work on a 48-hour cadence."],
   ["How fast will my designs be delivered?",
-   "Most standard tasks — like social assets or landing page mockups — are delivered within 48 hours. For larger builds like a full website, the project is divided into milestones so you still see fresh progress every couple of days."],
+   "Most standard tasks, like social assets or landing page mockups, are delivered within 48 hours. For larger builds like a full website, the project is divided into milestones so you still see fresh progress every couple of days."],
   ["How exactly does the pause feature work?",
    "Subscriptions run on a 31-day cycle. If you use 20 days and don't need more work that month, you can pause. The remaining 11 days are banked, ready to activate whenever your next project pops up. You never pay for idle time."],
   ["How do I submit my design briefs?",
@@ -204,7 +204,7 @@ function Footer({ onNav }) {
               <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 15, letterSpacing: '.01em', color: 'rgba(255,246,226,.72)', whiteSpace: 'nowrap' }}>Design Labs</span>
             </div>
             <p style={{ color: 'rgba(255,246,226,.7)', maxWidth: '34ch', marginTop: 14 }}>
-              Your design support to launch, scale, and stand out — in one subscription.
+              Your design support to launch, scale, and stand out, in one subscription.
             </p>
             <div style={{ marginTop: 20 }}>
               <Btn4 variant="primary" iconRight="ph-arrow-right" onClick={() => onNav('pricing')}>View pricing</Btn4>
