@@ -88,8 +88,9 @@ export async function fetchNotionPosts() {
       const pr = row.properties;
       const titleKey = Object.keys(pr).find((k) => pr[k].type === 'title');
       const title = txt(pr[titleKey]) || 'Untitled';
-      const status = statusName(pick(pr, 'Status'));
-      if (status.toLowerCase() !== 'published') continue; // only Published rows go live
+      // Live when Status is Published/Live/Done (default Notion status works as-is).
+      const status = statusName(pick(pr, 'Status')).toLowerCase();
+      if (!['published', 'live', 'done', 'complete'].includes(status)) continue;
 
       const html = await blocksToHtml(row.id);
       const plain = html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
