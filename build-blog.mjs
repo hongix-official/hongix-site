@@ -43,7 +43,9 @@ async function getPosts() {
 }
 
 async function readLocalPosts() {
-  const files = (await readdir(POSTS_DIR)).filter((f) => f.endsWith('.md'));
+  let files = [];
+  try { files = (await readdir(POSTS_DIR)).filter((f) => f.endsWith('.md')); }
+  catch { return []; } // dir may not exist once all posts are moved to Notion
   const posts = [];
   for (const f of files) {
     const raw = await readFile(join(POSTS_DIR, f), 'utf8');
