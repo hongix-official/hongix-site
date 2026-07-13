@@ -24,9 +24,9 @@ jobs:
         with:
           node-version: '22'
           cache: npm
-      # npm install (not ci): sidesteps the npm optional-deps bug where a macOS
-      # lockfile omits the Linux rollup native binary on CI.
-      - run: npm install --no-audit --no-fund
+      # Drop the macOS-generated lockfile so npm resolves the Linux rollup native
+      # binary fresh (npm optional-deps bug: npm/cli#4828).
+      - run: rm -f package-lock.json && npm install --no-audit --no-fund
       - run: npx playwright install --with-deps chromium
       - name: Build (Notion + prerender)
         env:
