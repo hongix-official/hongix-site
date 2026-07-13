@@ -121,7 +121,12 @@ const BLOG_CSS = `
   .bx-card p { color:var(--ink-soft); margin:0; }
   .bx-foot { border-top:1px solid var(--line); margin-top:24px; }
   .bx-foot .bx-wrap { max-width:1100px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; padding-top:28px; padding-bottom:28px; font-family:var(--font-mono); font-size:13px; color:var(--ink-faint); }
-  @media (max-width:560px){ article h1,.bx-hero h1{font-size:var(--text-3xl);} }
+  @media (max-width:560px){
+    article h1,.bx-hero h1{font-size:var(--text-3xl);}
+    .bx-brand .s{display:none;}
+    .bx-nav a:not(.bx-cta){display:none;}
+    .bx-head .bx-wrap{height:58px;}
+  }
 `;
 
 const WORDMARK = `<span class="m">hongi<svg viewBox="0 0 100 100" style="width:20px;height:22px;margin:0 -1px;overflow:visible" role="img" aria-label="x"><defs><linearGradient id="hx" x1="0.1" y1="0" x2="0.9" y2="1"><stop offset="0" stop-color="#FFA23E"/><stop offset="1" stop-color="#EC5A1A"/></linearGradient></defs><path transform="rotate(45 50 50)" d="M50 13 C55 35 65 45 87 50 C65 55 55 65 50 87 C45 65 35 55 13 50 C35 45 45 35 50 13 Z" fill="url(#hx)" stroke="url(#hx)" stroke-width="10" stroke-linejoin="round"/></svg></span>`;
