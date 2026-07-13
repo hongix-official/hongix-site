@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found | Hongix Design Labs</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesk:wght@400..700&family=Instrument+Serif:ital@1&family=Space+Mono:wght@700&display=swap');
+  :root { --ink:#1C1606; --ink-soft:#4A4231; --ink-faint:#8A8068; --line:#E3DED2; --yellow:#FFC02E; --cream:#FFF6E2; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; padding:24px;
+    font-family:'Hanken Grotesk',system-ui,sans-serif; color:var(--ink);
+    background-color:#FDFBF4; background-image:radial-gradient(rgba(70,52,18,.055) 1px, transparent 1.1px); background-size:15px 15px; background-position:-5px -5px; }
+  .wrap { max-width:520px; }
+  .brand { display:inline-flex; align-items:center; font-family:'Bricolage Grotesque'; font-weight:800; font-size:28px; letter-spacing:-.04em; margin-bottom:36px; }
+  .brand svg { width:24px; height:26px; margin:0 -1px; overflow:visible; }
+  .code { font-family:'Space Mono'; font-weight:700; font-size:14px; letter-spacing:.16em; text-transform:uppercase; color:#EC5A1A; }
+  h1 { font-family:'Bricolage Grotesque'; font-weight:800; font-size:clamp(2rem,1.4rem+3vw,3rem); line-height:1.05; letter-spacing:-.03em; margin:14px 0 0; }
+  h1 .serif { font-family:'Instrument Serif'; font-style:italic; font-weight:400; }
+  p { color:var(--ink-soft); font-size:18px; margin:16px 0 0; }
+  .actions { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:32px; }
+  a.btn { text-decoration:none; font-family:'Bricolage Grotesque'; font-weight:700; font-size:16px; padding:13px 24px; border-radius:16px; border:1px solid var(--line); }
+  a.primary { background:var(--yellow); color:var(--ink); box-shadow:0 6px 16px rgba(38,28,8,.08); }
+  a.ghost { background:transparent; color:var(--ink); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <span class="brand">hongi<svg viewBox="0 0 100 100" aria-label="x" role="img"><defs><linearGradient id="s" x1=".1" y1="0" x2=".9" y2="1"><stop offset="0" stop-color="#FFA23E"/><stop offset="1" stop-color="#EC5A1A"/></linearGradient></defs><path transform="rotate(45 50 50)" d="M50 13 C55 35 65 45 87 50 C65 55 55 65 50 87 C45 65 35 55 13 50 C35 45 45 35 50 13 Z" fill="url(#s)" stroke="url(#s)" stroke-width="10" stroke-linejoin="round"/></svg></span>
+    <div class="code">404</div>
+    <h1>This page took a <span class="serif">wrong turn</span>.</h1>
+    <p>The page you're looking for doesn't exist or has moved.</p>
+    <div class="actions">
+      <a class="btn primary" href="/">Back home</a>
+      <a class="btn ghost" href="/blog/">Read the blog</a>
+    </div>
+  </div>
+</body>
+</html>
