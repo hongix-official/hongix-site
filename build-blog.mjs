@@ -203,7 +203,7 @@ function postPage(p) {
     <a class="bx-btn" href="/#pricing">See how it works →</a>
   </div>
 </article></main>`;
-  return shell({ title: `${p.title} — Hongix`, description: p.excerpt, canonical: url, jsonld, body, ogType: 'article' });
+  return shell({ title: `${p.title} | Hongix`, description: p.excerpt, canonical: url, jsonld, body, ogType: 'article' });
 }
 
 function indexPage(posts) {
@@ -220,7 +220,7 @@ function indexPage(posts) {
       <div class="bx-meta"><span>${fmtDate(p.date)}</span><span>·</span><span>${readTime(p.text)} min read</span></div>
     </a>`).join('')}</div>
 </main>`;
-  return shell({ title: 'Blog — Hongix Design Labs', description: 'Notes on design, startups, and shipping fast, from Hongix — a design partner for founders and growing brands.', canonical: url, body });
+  return shell({ title: 'Blog | Hongix Design Labs', description: 'Notes on design, startups, and shipping fast, from Hongix, a design partner for founders and growing brands.', canonical: url, body });
 }
 
 async function sitemap(posts) {
