@@ -48,7 +48,7 @@ function Pricing({ refEl, onNav }) {
           <div style={{ background: 'var(--paper)', border: 'var(--bw) solid var(--line)', borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-md)', padding: 32, display: 'flex', flexDirection: 'column', gap: 18, height: '100%' }}>
             <Badge4 tone="sky" dot>Optional add-on</Badge4>
             <div>
-              <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 24, letterSpacing: '-.02em', margin: 0 }}>Custom Webflow development</h3>
+              <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 24, letterSpacing: '-.02em', margin: 0 }}>Custom Webflow / WordPress development</h3>
               <p style={{ fontSize: 15, lineHeight: 1.5, color: 'var(--ink-soft)', margin: '8px 0 0' }}>For teams that need a fully custom, CMS-driven website built and maintained.</p>
             </div>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, flexWrap: 'wrap' }}>
@@ -57,7 +57,7 @@ function Pricing({ refEl, onNav }) {
             </div>
             <hr style={{ border: 'none', borderTop: '1px solid var(--line)', margin: '2px 0' }} />
             <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 11, flex: '1 0 auto' }}>
-              {['Fully custom Webflow build', 'Complex architectures & CMS', 'Ongoing maintenance & updates', 'Added on top of your partner plan'].map((f, i) => (
+              {['Fully custom Webflow or WordPress build', 'Complex architectures & CMS', 'Ongoing maintenance & updates', 'Added on top of your partner plan'].map((f, i) => (
                 <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontFamily: 'var(--font-body)', fontSize: 15.5, color: 'var(--ink)', lineHeight: 1.4 }}>
                   <span style={{ flex: 'none', width: 24, height: 24, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: 'var(--sky-400)', borderRadius: 999, color: 'var(--paper)', fontSize: 14, marginTop: 1 }}><i className="ph-bold ph-check" aria-hidden="true" /></span>{f}
                 </li>
