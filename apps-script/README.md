@@ -44,6 +44,15 @@ you don't need to touch the site.
   inbox you check, or set it to `''` to turn notifications off. The email is sent
   *from* the Google account that owns the sheet. Note Google's free MailApp quota
   is ~100 emails/day, which is plenty for a waitlist.
+- **Discord ping on each signup (optional).** To also get a message in a Discord
+  channel, create a webhook in Discord (**Server Settings → Integrations →
+  Webhooks → New Webhook → Copy Webhook URL**), then store that URL as a **Script
+  Property** so the secret stays out of the (public) code:
+  **Project Settings (⚙️) → Script Properties → Add script property**
+  — Property `DISCORD_WEBHOOK_URL`, Value = the webhook URL. Leave the property
+  unset to keep Discord off. It's best-effort like the email, so a hiccup never
+  blocks the sheet save. (The first save after adding this asks you to re-authorize
+  the external-request permission.)
 - **After editing `Code.gs` you must redeploy a new version** for changes to take
   effect (Deploy → Manage deployments → pencil → Version: New version → Deploy).
   The `/exec` URL stays the same, so the site needs no change.

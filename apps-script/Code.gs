@@ -18,6 +18,17 @@ const SHEET_NAME = 'Waitlist';
 // (Leave empty '' to turn email notifications off.)
 const NOTIFY_EMAIL = 'hello@hongix.com';
 
+// Discord webhook for new-signup pings. The URL is a secret, so it is NOT stored
+// in this (public) file — it lives in Script Properties:
+//   Project Settings (⚙️) > Script Properties > Add script property
+//     Property: DISCORD_WEBHOOK_URL
+//     Value:    https://discord.com/api/webhooks/…  (Server Settings > Integrations
+//               > Webhooks > New Webhook > Copy Webhook URL)
+// Leave the property unset to turn Discord notifications off.
+function getDiscordWebhookUrl_() {
+  return PropertiesService.getScriptProperties().getProperty('DISCORD_WEBHOOK_URL') || '';
+}
+
 function doPost(e) {
   try {
     const p = (e && e.parameter) || {};
@@ -28,6 +39,7 @@ function doPost(e) {
 
     getSheet_().appendRow([new Date(), name, email, plan, source]);
     notify_(name, email, plan, source);
+    notifyDiscord_(name, email, plan, source);
     return json_({ ok: true });
   } catch (err) {
     return json_({ ok: false, error: String(err) });
@@ -53,6 +65,37 @@ function notify_(name, email, plan, source) {
     });
   } catch (err) {
     // Ignore — the row is already saved; email is best-effort.
+  }
+}
+
+// Pings a Discord channel via webhook on each signup. Best-effort like the email:
+// a network hiccup never blocks the save (the row is already written).
+function notifyDiscord_(name, email, plan, source) {
+  const webhookUrl = getDiscordWebhookUrl_();
+  if (!webhookUrl) return;
+  try {
+    const payload = {
+      username: 'Hongix Waitlist',
+      embeds: [{
+        title: '🎉 New waitlist signup',
+        color: 0x5865F2,
+        fields: [
+          { name: 'Name', value: name || '—', inline: true },
+          { name: 'Email', value: email || '—', inline: true },
+          { name: 'Plan', value: plan || '—', inline: false },
+          { name: 'Source', value: source || '—', inline: false },
+        ],
+        timestamp: new Date().toISOString(),
+      }],
+    };
+    UrlFetchApp.fetch(webhookUrl, {
+      method: 'post',
+      contentType: 'application/json',
+      payload: JSON.stringify(payload),
+      muteHttpExceptions: true,
+    });
+  } catch (err) {
+    // Ignore — the row is already saved; the Discord ping is best-effort.
   }
 }
 
