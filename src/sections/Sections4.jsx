@@ -187,6 +187,12 @@ const FOOT_NAV = {
   'Apply': 'waitlist',
 };
 
+/* Footer labels → external URLs (open in a new tab) */
+const FOOT_EXTERNAL = {
+  'Instagram': 'https://www.instagram.com/sparkinordinary/',
+  'LinkedIn': 'https://www.linkedin.com/in/gittaputri/',
+};
+
 function Footer({ onNav }) {
   return (
     <footer style={{ background: 'var(--ink)', color: 'var(--cream)', borderTop: 'var(--bw) solid var(--line)' }}>
@@ -210,8 +216,8 @@ function Footer({ onNav }) {
               <Btn4 variant="primary" iconRight="ph-arrow-right" onClick={() => onNav('pricing')}>View pricing</Btn4>
             </div>
           </div>
-          <FootCol title="Hongix" links={['Work', 'How it works', 'Pricing', 'FAQ', 'Blog']} onNav={onNav} />
-          <FootCol title="Connect" links={['Book a call', 'Apply', 'hello@hongix.com', 'Instagram']} onNav={onNav} />
+          <FootCol title="Hongix" links={['How it works', 'Work', 'Pricing', 'FAQ', 'Blog']} onNav={onNav} />
+          <FootCol title="Connect" links={['Book a call', 'Apply', 'hello@hongix.com', 'Instagram', 'LinkedIn']} onNav={onNav} />
         </div>
         <div style={{ borderTop: '1px solid rgba(255,246,226,.16)', marginTop: 'var(--space-7)', paddingTop: 'var(--space-5)', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12, fontSize: 13, color: 'rgba(255,246,226,.6)', fontFamily: 'var(--font-mono)' }}>
           <span>© 2026 HONGIX DESIGN LABS</span>
@@ -227,15 +233,15 @@ function Footer({ onNav }) {
 
 function FootCol({ title, links, onNav }) {
   const handle = (e, l) => {
-    if (l === 'Blog' || l.includes('@')) return; // Blog = real page link; mailto = native
+    if (l === 'Blog' || l.includes('@') || FOOT_EXTERNAL[l]) return; // Blog/external = real link; mailto = native
     if (FOOT_NAV[l]) { e.preventDefault(); onNav(FOOT_NAV[l]); }
   };
-  const hrefFor = (l) => (l === 'Blog' ? '/blog/' : l.includes('@') ? `mailto:${l}` : FOOT_NAV[l] ? `#${FOOT_NAV[l]}` : '#');
+  const hrefFor = (l) => (l === 'Blog' ? '/blog/' : l.includes('@') ? `mailto:${l}` : FOOT_EXTERNAL[l] || (FOOT_NAV[l] ? `#${FOOT_NAV[l]}` : '#'));
   return (
     <div>
       <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 700, letterSpacing: '.12em', textTransform: 'uppercase', color: 'rgba(255,246,226,.55)', marginBottom: 14 }}>{title}</div>
       <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
-        {links.map((l, i) => <li key={i}><a href={hrefFor(l)} onClick={(e) => handle(e, l)} style={{ color: 'var(--cream)', textDecoration: 'none', fontSize: 15 }}>{l}</a></li>)}
+        {links.map((l, i) => <li key={i}><a href={hrefFor(l)} onClick={(e) => handle(e, l)} {...(FOOT_EXTERNAL[l] ? { target: '_blank', rel: 'noopener noreferrer' } : {})} style={{ color: 'var(--cream)', textDecoration: 'none', fontSize: 15 }}>{l}</a></li>)}
       </ul>
     </div>
   );

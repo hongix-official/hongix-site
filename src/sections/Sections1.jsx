@@ -117,8 +117,8 @@ function Header({ onNav }) {
             <span style={{ display: 'block', width: '100%', fontFamily: 'var(--font-mono)', fontWeight: 700, fontSize: 10, letterSpacing: '.16em', textTransform: 'uppercase', color: 'var(--ink-faint)', whiteSpace: 'nowrap', textAlign: 'justify', textAlignLast: 'justify', marginLeft: 1 }}>Design Labs</span>
           </a>
           <nav style={{ display: 'flex', gap: 4, marginLeft: 8 }} className="hx-hide-md">
-            <NavPill href="#work" onClick={(e) => { e.preventDefault(); onNav('work'); }}>Work</NavPill>
             <NavPill href="#how" onClick={(e) => { e.preventDefault(); onNav('how'); }}>How it works</NavPill>
+            <NavPill href="#work" onClick={(e) => { e.preventDefault(); onNav('work'); }}>Work</NavPill>
             <NavPill href="#pricing" onClick={(e) => { e.preventDefault(); onNav('pricing'); }}>Pricing</NavPill>
             <NavPill href="#faq" onClick={(e) => { e.preventDefault(); onNav('faq'); }}>FAQ</NavPill>
             <NavPill href="/blog/">Blog</NavPill>

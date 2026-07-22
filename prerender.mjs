@@ -53,6 +53,21 @@ try {
   }, { timeout: 20000 });
   await page.waitForTimeout(1000);
 
+  // Strip third-party embed artifacts before snapshotting. The cal.com embed's
+  // useEffect runs during prerender and injects its loader <script> into <head>
+  // (plus an iframe/custom-elements into #hx-cal). If those get baked into the
+  // snapshot, a real visit loads embed.js twice — once from the baked tag, once
+  // from the client loader on hydration — which throws "cal-modal-box already
+  // used with this registry" and the calendar never renders. Remove them so the
+  // client loader is the single source that injects the embed at runtime.
+  await page.evaluate(() => {
+    document
+      .querySelectorAll('script[src*="cal.com/embed"], script[src*="app.cal.com"]')
+      .forEach((el) => el.remove());
+    const cal = document.getElementById('hx-cal');
+    if (cal) cal.innerHTML = '';
+  });
+
   const html = await page.content();
   if (!html.includes('Founding Partner')) throw new Error('rendered content missing');
   await writeFile(join(DIST, 'index.html'), '<!doctype html>\n' + html.replace(/^<!doctype html>/i, ''), 'utf8');
