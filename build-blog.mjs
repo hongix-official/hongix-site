@@ -120,6 +120,8 @@ const BLOG_CSS = `
   .bx-tag { background:var(--paper); border:1px solid var(--line); border-radius:999px; padding:3px 11px; font-size:12px; color:var(--ink-soft); }
   article .bx-body { margin-top:36px; font-size:18px; line-height:1.7; color:var(--ink); }
   .bx-body h2 { font-size:var(--text-xl); margin:40px 0 12px; letter-spacing:-.02em; }
+  .bx-body h3 { font-size:var(--text-lg); margin:30px 0 10px; letter-spacing:-.01em; }
+  .bx-body .bx-hl { background:linear-gradient(180deg, transparent 58%, rgba(255,192,46,.55) 0); font-weight:600; padding:0 1px; }
   .bx-body p { margin:0 0 20px; }
   .bx-body ul, .bx-body ol { margin:0 0 20px; padding-left:22px; }
   .bx-body li { margin:0 0 8px; }
@@ -201,7 +203,7 @@ function postPage(p) {
   <div class="bx-body">${p.html}</div>
   <div class="bx-endcta">
     <h3>A design partner for founders &amp; growing brands</h3>
-    <p>Product, launch &amp; growth design — one predictable subscription.</p>
+    <p>Product, launch, and growth design in one predictable subscription.</p>
     <a class="bx-btn" href="/#pricing">See how it works →</a>
   </div>
 </article></main>`;

@@ -108,7 +108,7 @@ function Steps({ refEl }) {
             One active request at a time. Big projects are broken into milestones with early alignment, so you see purposeful progress every 48 hours.
           </StepCard>
           <StepCard step="3" icon="ph-arrows-clockwise" iconTone="sky" title="Revise until perfect">
-            Don't love the first draft? No problem. You get unlimited revisions until you are 100% happy with the result.
+            Don't love the first draft? No problem. We refine the work until it is exactly right.
           </StepCard>
         </div>
       </div>

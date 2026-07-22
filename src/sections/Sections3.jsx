@@ -54,6 +54,16 @@ function WhyHongix() {
             Your ideas shouldn't sit in someone's inbox for two weeks. Submit a request and get finished work back every 48 hours, while your competitors are still scheduling kickoff calls.
           </p>
         </div>
+        {/* Substance differentiator — leads the "why" with design judgment, before the operational perks below. */}
+        <div style={{ display: 'flex', gap: 18, background: 'var(--paper)', border: 'var(--bw) solid var(--line)', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-md)', padding: 'var(--space-6)', marginBottom: 'var(--space-5)' }}>
+          <span style={{ flex: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 56, height: 56, background: 'var(--coral-300)', border: '1px solid var(--line)', borderRadius: 'var(--radius-md)', fontSize: 28 }}>
+            <i className="ph-bold ph-compass" />
+          </span>
+          <div>
+            <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 21, letterSpacing: '-.02em', margin: '2px 0 6px' }}>Design that thinks first</h3>
+            <p style={{ fontSize: 15, lineHeight: 1.55, color: 'var(--ink-soft)', margin: 0, maxWidth: '70ch' }}>Great design starts with the right questions, not just a brief. Every decision is informed by a real understanding of your users and your goals, so the work does its job instead of only looking good.</p>
+          </div>
+        </div>
         <div className="hx-why-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--space-5)' }}>
           {WHY.map(([ic, title, body], i) => (
             <div key={i} style={{ display: 'flex', gap: 18, background: 'var(--paper)', border: 'var(--bw) solid var(--line)', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-md)', padding: 'var(--space-6)' }}>
