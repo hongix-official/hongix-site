@@ -122,6 +122,10 @@ const BLOG_CSS = `
   .bx-body h2 { font-size:var(--text-xl); margin:40px 0 12px; letter-spacing:-.02em; }
   .bx-body h3 { font-size:var(--text-lg); margin:30px 0 10px; letter-spacing:-.01em; }
   .bx-body .bx-hl { background:linear-gradient(180deg, transparent 58%, rgba(255,192,46,.55) 0); font-weight:600; padding:0 1px; }
+  .bx-body .bx-table-wrap { overflow-x:auto; margin:26px 0; }
+  .bx-body table.bx-table { width:100%; border-collapse:collapse; font-size:16px; line-height:1.55; }
+  .bx-body .bx-table th, .bx-body .bx-table td { border:1px solid var(--line); padding:14px 16px; text-align:left; vertical-align:top; }
+  .bx-body .bx-table th { background:var(--paper); font-weight:700; letter-spacing:-.01em; }
   .bx-body p { margin:0 0 20px; }
   .bx-body ul, .bx-body ol { margin:0 0 20px; padding-left:22px; }
   .bx-body li { margin:0 0 8px; }

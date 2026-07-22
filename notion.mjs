@@ -26,15 +26,45 @@ async function api(url, opts) {
 // rich_text[] -> inline HTML (bold/italic/code/strikethrough/links)
 function inline(rich = []) {
   return rich.map((t) => {
-    let s = esc(t.plain_text);
+    // Newlines inside a cell/line (Notion soft breaks) become <br>.
+    let s = esc(t.plain_text).replace(/\n/g, '<br>');
     const a = t.annotations || {};
     if (a.code) s = `<code>${s}</code>`;
     if (a.bold) s = `<strong>${s}</strong>`;
     if (a.italic) s = `<em>${s}</em>`;
     if (a.strikethrough) s = `<s>${s}</s>`;
+    // Any Notion text/background color becomes the brand highlight marker.
+    if (a.color && a.color !== 'default') s = `<span class="bx-hl">${s}</span>`;
     if (t.href) s = `<a href="${esc(t.href)}" rel="noopener">${s}</a>`;
     return s;
   }).join('');
+}
+
+async function fetchChildren(blockId) {
+  const out = [];
+  let cursor;
+  do {
+    const url = `https://api.notion.com/v1/blocks/${blockId}/children?page_size=100${cursor ? `&start_cursor=${cursor}` : ''}`;
+    const j = await api(url);
+    out.push(...j.results);
+    cursor = j.has_more ? j.next_cursor : null;
+  } while (cursor);
+  return out;
+}
+
+// Notion table block -> HTML table (cells hold rich text only). First row is a
+// header when has_column_header is set. Wrapped so wide tables scroll on mobile.
+async function tableToHtml(block) {
+  const rows = (await fetchChildren(block.id)).filter((r) => r.type === 'table_row');
+  const hasHeader = block.table?.has_column_header;
+  const trs = rows.map((r, ri) => {
+    const cells = (r.table_row?.cells || []).map((cell) => {
+      const tag = hasHeader && ri === 0 ? 'th' : 'td';
+      return `<${tag}>${inline(cell)}</${tag}>`;
+    }).join('');
+    return `<tr>${cells}</tr>`;
+  }).join('');
+  return `<div class="bx-table-wrap"><table class="bx-table">${trs}</table></div>`;
 }
 
 async function blocksToHtml(pageId) {
@@ -71,6 +101,7 @@ async function blocksToHtml(pageId) {
     else if (t === 'to_do') out.push(`<p>${d.checked ? '☑' : '☐'} ${inline(d.rich_text)}</p>`);
     else if (t === 'callout') out.push(`<blockquote>${inline(d.rich_text)}</blockquote>`);
     else if (t === 'image') { const src = d.type === 'external' ? d.external.url : d.file?.url; if (src) out.push(`<img src="${esc(src)}" alt="${esc(inline(d.caption))}" loading="lazy">`); }
+    else if (t === 'table') out.push(await tableToHtml(b));
   }
   flush();
   return out.join('\n');
