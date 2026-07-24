@@ -33,6 +33,17 @@ const server = createServer(async (req, res) => {
 
 await new Promise((r) => server.listen(PORT, r));
 
+// Always seed /work with the SPA shell first, so /work exists (and the client
+// renders the WorkShowcase from the path) even if the Chromium prerender below
+// is unavailable and skipped.
+try {
+  const shell = await readFile(join(DIST, 'index.html'), 'utf8');
+  await mkdir(join(DIST, 'work'), { recursive: true });
+  await writeFile(join(DIST, 'work', 'index.html'), shell, 'utf8');
+} catch (e) {
+  console.warn('[prerender] could not seed /work shell:', e.message);
+}
+
 let chromium;
 try {
   ({ chromium } = await import('playwright'));
@@ -63,12 +74,6 @@ async function snapshot(page, path, marker) {
 }
 
 try {
-  // Seed /work with the raw SPA shell so the dev server can serve it; the app
-  // renders the WorkShowcase there based on the /work path.
-  const rawShell = await readFile(join(DIST, 'index.html'), 'utf8');
-  await mkdir(join(DIST, 'work'), { recursive: true });
-  await writeFile(join(DIST, 'work', 'index.html'), rawShell, 'utf8');
-
   const browser = await chromium.launch();
   const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 }, reducedMotion: 'reduce' });
   const page = await ctx.newPage();
