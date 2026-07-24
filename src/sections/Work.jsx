@@ -64,7 +64,7 @@ function WorkShowcase({ onNav }) {
   }, []);
 
   return (
-    <section id="top" className="hx-section">
+    <section id="top" className="hx-section" style={{ paddingTop: 40 }}>
       <div className="hx-container">
         <a href="/#work" onClick={(e) => { e.preventDefault(); onNav('work'); }} style={{ display: 'inline-flex', alignItems: 'center', gap: 7, color: 'var(--ink-soft)', textDecoration: 'none', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 14, marginBottom: 26 }}>
           <span aria-hidden="true">←</span> Back
