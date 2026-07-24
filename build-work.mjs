@@ -45,7 +45,7 @@ const WORK_CSS = `
   .wk-sub{ font-size:1.075rem; color:var(--ink-soft); margin:18px 0 0; max-width:50ch; }
 
   .wk-cards{ display:grid; grid-template-columns:1fr 1fr; gap:26px; margin-top:52px; }
-  .wk-card{ background:var(--paper); border:1px solid var(--line); border-radius:var(--radius-2xl); overflow:hidden; display:flex; flex-direction:column; box-shadow:var(--shadow-sm); transition:transform .2s, box-shadow .2s; }
+  .wk-card{ background:var(--paper); border:1px solid var(--line); border-radius:var(--radius-lg); overflow:hidden; display:flex; flex-direction:column; box-shadow:var(--shadow-sm); transition:transform .2s, box-shadow .2s; }
   .wk-card:hover{ transform:translateY(-3px); box-shadow:var(--shadow-lg); }
   .wk-img{ width:100%; aspect-ratio:1200/631; object-fit:cover; display:block; border-bottom:1px solid var(--line); background:var(--cream-deep); }
   @keyframes wkPulse{ 0%{ box-shadow:0 0 0 0 rgba(47,148,105,.5); } 70%{ box-shadow:0 0 0 6px rgba(47,148,105,0); } 100%{ box-shadow:0 0 0 0 rgba(47,148,105,0); } }
