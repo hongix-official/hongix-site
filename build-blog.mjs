@@ -235,6 +235,7 @@ async function sitemap(posts) {
   const today = new Date().toISOString().slice(0, 10);
   const urls = [
     { loc: `${SITE}/`, lastmod: today, priority: '1.0', freq: 'weekly' },
+    { loc: `${SITE}/work`, lastmod: today, priority: '0.8', freq: 'monthly' },
     { loc: `${SITE}/blog/`, lastmod: today, priority: '0.8', freq: 'weekly' },
     ...posts.map((p) => ({ loc: `${SITE}/blog/${p.slug}/`, lastmod: p.date || today, priority: '0.7', freq: 'monthly' })),
   ];

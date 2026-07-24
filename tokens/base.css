@@ -70,6 +70,12 @@ a { color: inherit; text-decoration-thickness: 2px; text-underline-offset: 3px; 
   outline-offset: 2px;
 }
 
+/* Product-design page (/work): two-up card grid + live status dot */
+.hx-work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); }
+@media (max-width: 760px) { .hx-work-grid { grid-template-columns: 1fr; } }
+.hx-livedot { width: 6px; height: 6px; border-radius: 999px; background: #2f9469; display: inline-block; animation: hxPulse 2s ease-out infinite; }
+@keyframes hxPulse { 0% { box-shadow: 0 0 0 0 rgba(47,148,105,.5); } 70% { box-shadow: 0 0 0 6px rgba(47,148,105,0); } 100% { box-shadow: 0 0 0 0 rgba(47,148,105,0); } }
+
 /* Portfolio track rows ("Explore the portfolio") — outline row-links that lift on hover */
 .hx-track { transition: transform .18s ease, box-shadow .22s ease, border-color .18s ease; }
 .hx-track:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--coral-300); }

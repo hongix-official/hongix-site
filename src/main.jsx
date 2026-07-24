@@ -7,11 +7,12 @@ import './sections/Sections1.jsx';
 import './sections/Sections2.jsx';
 import './sections/Sections3.jsx';
 import './sections/Sections4.jsx';
+import './sections/Work.jsx';
 import { WaitlistModal } from './waitlist.jsx';
 
 const {
   Header, Hero, TrustBar, About, Steps, Services,
-  Audience, WhyHongix, Testimonials, Pricing, Faq, BookCall, Footer,
+  Audience, WhyHongix, Testimonials, Pricing, Faq, BookCall, Footer, WorkShowcase,
 } = window;
 
 // NOTE: TrustBar (stats) and Testimonials are intentionally not rendered yet —
@@ -52,4 +53,25 @@ function App() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+/* The /work product-design page — same Header/Footer/modal as the landing,
+   with cross-page nav (in-page anchors live on the landing). */
+function WorkPage() {
+  const [waitlist, setWaitlist] = React.useState({ open: false, plan: null });
+  const onNav = (id, arg) => {
+    if (id === 'waitlist') { setWaitlist({ open: true, plan: arg || null }); return; }
+    window.location.href = '/#' + (id === 'top' ? 'top' : id);
+  };
+  return (
+    <React.Fragment>
+      <Header onNav={onNav} />
+      <main>
+        <WorkShowcase onNav={onNav} />
+      </main>
+      <Footer onNav={onNav} />
+      <WaitlistModal open={waitlist.open} plan={waitlist.plan} onClose={() => setWaitlist({ open: false, plan: null })} />
+    </React.Fragment>
+  );
+}
+
+const route = window.location.pathname.replace(/\/+$/, '') || '/';
+ReactDOM.createRoot(document.getElementById('root')).render(route === '/work' ? <WorkPage /> : <App />);

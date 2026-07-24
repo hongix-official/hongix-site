@@ -1,12 +1,12 @@
 /* Build-time prerender: render the built app in headless Chromium and snapshot
-   the resulting HTML back into dist/index.html, so crawlers get fully-rendered
-   content in the initial response. The client JS still loads and takes over.
+   the resulting HTML back into dist/ (landing + /work), so crawlers get fully
+   rendered content in the initial response. The client JS still hydrates.
 
    Runs after `vite build` (see package.json). Fails soft: if Chromium isn't
    available, it warns and leaves the SPA index.html untouched so the build
    still produces a working dist. */
 import { createServer } from 'node:http';
-import { readFile, writeFile } from 'node:fs/promises';
+import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { join, extname } from 'node:path';
 
 const DIST = join(process.cwd(), 'dist');
@@ -21,7 +21,8 @@ const MIME = {
 const server = createServer(async (req, res) => {
   try {
     let p = decodeURIComponent((req.url || '/').split('?')[0]);
-    if (p === '/' || p.endsWith('/')) p = '/index.html';
+    if (p.endsWith('/')) p += 'index.html';        // '/' -> '/index.html', '/work/' -> '/work/index.html'
+    else if (!extname(p)) p += '/index.html';       // '/work' -> '/work/index.html'
     const data = await readFile(join(DIST, p));
     res.writeHead(200, { 'content-type': MIME[extname(p)] || 'application/octet-stream' });
     res.end(data);
@@ -41,37 +42,44 @@ try {
   process.exit(0);
 }
 
-try {
-  const browser = await chromium.launch();
-  const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 }, reducedMotion: 'reduce' });
-  const page = await ctx.newPage();
-  await page.goto(`http://localhost:${PORT}/`, { waitUntil: 'networkidle', timeout: 30000 }).catch(() => {});
-  // Wait until React has rendered real content into #root.
-  await page.waitForFunction(() => {
+// Render one route and return a clean HTML snapshot once `marker` text appears.
+async function snapshot(page, path, marker) {
+  await page.goto(`http://localhost:${PORT}${path}`, { waitUntil: 'networkidle', timeout: 30000 }).catch(() => {});
+  await page.waitForFunction((m) => {
     const root = document.getElementById('root');
-    return root && root.children.length > 0 && document.body.textContent.includes('Founding Partner');
-  }, { timeout: 20000 });
+    return root && root.children.length > 0 && document.body.textContent.includes(m);
+  }, marker, { timeout: 20000 });
   await page.waitForTimeout(1000);
-
-  // Strip third-party embed artifacts before snapshotting. The cal.com embed's
-  // useEffect runs during prerender and injects its loader <script> into <head>
-  // (plus an iframe/custom-elements into #hx-cal). If those get baked into the
-  // snapshot, a real visit loads embed.js twice — once from the baked tag, once
-  // from the client loader on hydration — which throws "cal-modal-box already
-  // used with this registry" and the calendar never renders. Remove them so the
-  // client loader is the single source that injects the embed at runtime.
+  // Strip cal.com embed artifacts so embed.js isn't baked into the snapshot
+  // (double-load otherwise breaks the calendar). Harmless where there's no embed.
   await page.evaluate(() => {
-    document
-      .querySelectorAll('script[src*="cal.com/embed"], script[src*="app.cal.com"]')
-      .forEach((el) => el.remove());
+    document.querySelectorAll('script[src*="cal.com/embed"], script[src*="app.cal.com"]').forEach((el) => el.remove());
     const cal = document.getElementById('hx-cal');
     if (cal) cal.innerHTML = '';
   });
-
   const html = await page.content();
-  if (!html.includes('Founding Partner')) throw new Error('rendered content missing');
-  await writeFile(join(DIST, 'index.html'), '<!doctype html>\n' + html.replace(/^<!doctype html>/i, ''), 'utf8');
-  console.log(`[prerender] snapshot written (${(html.length / 1024).toFixed(0)} KB).`);
+  if (!html.includes(marker)) throw new Error(`rendered content missing (${marker})`);
+  return '<!doctype html>\n' + html.replace(/^<!doctype html>/i, '');
+}
+
+try {
+  // Seed /work with the raw SPA shell so the dev server can serve it; the app
+  // renders the WorkShowcase there based on the /work path.
+  const rawShell = await readFile(join(DIST, 'index.html'), 'utf8');
+  await mkdir(join(DIST, 'work'), { recursive: true });
+  await writeFile(join(DIST, 'work', 'index.html'), rawShell, 'utf8');
+
+  const browser = await chromium.launch();
+  const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 }, reducedMotion: 'reduce' });
+  const page = await ctx.newPage();
+
+  const landing = await snapshot(page, '/', 'Founding Partner');
+  await writeFile(join(DIST, 'index.html'), landing, 'utf8');
+
+  const work = await snapshot(page, '/work', 'Logbill');
+  await writeFile(join(DIST, 'work', 'index.html'), work, 'utf8');
+
+  console.log('[prerender] snapshots written (landing + /work).');
   await browser.close();
 } catch (err) {
   console.warn('[prerender] skipped:', err.message);
