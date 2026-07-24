@@ -74,8 +74,8 @@ function WorkShowcase({ onNav }) {
         <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.08, fontSize: 'clamp(1.9rem, 1.1rem + 3vw, 2.9rem)', margin: '14px 0 0', textWrap: 'balance' }}>
           Design, proven in <span className="hx-serif">products people use.</span>
         </h1>
-        <p style={{ fontSize: 'var(--text-md)', color: 'var(--ink-soft)', margin: '18px 0 0', maxWidth: '52ch' }}>
-          Products designed and shipped end to end by Hongix. Every one is live right now, free to open, and needs no sign-up.
+        <p style={{ fontSize: 'var(--text-md)', color: 'var(--ink-soft)', margin: '18px 0 0', maxWidth: '44rem' }}>
+          Products designed and shipped end to end by Hongix. Every one is live right now,<br />free to open, and needs no sign-up.
         </p>
 
         <div className="hx-work-grid" style={{ marginTop: 'var(--space-7)' }}>
