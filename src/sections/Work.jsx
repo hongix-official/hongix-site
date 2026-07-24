@@ -71,7 +71,7 @@ function WorkShowcase({ onNav }) {
         </a>
 
         <div style={{ fontFamily: 'var(--font-mono)', fontWeight: 700, fontSize: 12, letterSpacing: '.16em', textTransform: 'uppercase', color: 'var(--coral-500)' }}>Product design</div>
-        <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, letterSpacing: '-.035em', lineHeight: 1.05, fontSize: 'clamp(2.1rem, 1.2rem + 3.4vw, 3.5rem)', margin: '14px 0 0', textWrap: 'balance', maxWidth: '16ch' }}>
+        <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.08, fontSize: 'clamp(1.9rem, 1.1rem + 3vw, 2.9rem)', margin: '14px 0 0', textWrap: 'balance' }}>
           Design, proven in <span className="hx-serif">products people use.</span>
         </h1>
         <p style={{ fontSize: 'var(--text-md)', color: 'var(--ink-soft)', margin: '18px 0 0', maxWidth: '52ch' }}>
