@@ -106,15 +106,8 @@ function Header({ onNav }) {
           border: 'var(--bw) solid var(--line)', borderRadius: 'var(--radius-pill)',
           boxShadow: scrolled ? 'var(--shadow-sm)' : 'var(--shadow-md)', transition: 'all var(--dur-base) var(--ease-out)',
         }}>
-          <a href="#top" onClick={(e) => { e.preventDefault(); onNav('top'); }} style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'flex-start', gap: 2, textDecoration: 'none' }}>
-            <span style={{ display: 'inline-flex', alignItems: 'center', fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 26, letterSpacing: '-.04em', color: 'var(--ink)', lineHeight: 1 }}>
-              hongi
-              <svg viewBox="0 0 100 100" style={{ width: 24, height: 26, margin: '0 -1px', overflow: 'visible' }} aria-label="x" role="img">
-                <defs><linearGradient id="hxSparkHeader" x1="0.1" y1="0" x2="0.9" y2="1"><stop offset="0" stopColor="#FFA23E" /><stop offset="1" stopColor="#EC5A1A" /></linearGradient></defs>
-                <path transform="rotate(45 50 50)" d="M50 13 C55 35 65 45 87 50 C65 55 55 65 50 87 C45 65 35 55 13 50 C35 45 45 35 50 13 Z" fill="url(#hxSparkHeader)" stroke="url(#hxSparkHeader)" strokeWidth="10" strokeLinejoin="round" />
-              </svg>
-            </span>
-            <span style={{ display: 'block', width: '100%', fontFamily: 'var(--font-mono)', fontWeight: 700, fontSize: 10, letterSpacing: '.16em', textTransform: 'uppercase', color: 'var(--ink-faint)', whiteSpace: 'nowrap', textAlign: 'justify', textAlignLast: 'justify', marginLeft: 1 }}>Design Labs</span>
+          <a href="#top" onClick={(e) => { e.preventDefault(); onNav('top'); }} style={{ display: 'inline-flex', alignItems: 'center', textDecoration: 'none', marginLeft: 10 }}>
+            <img src="/assets/hongix-logo.svg" alt="Hongix Designs" style={{ height: 34, width: 'auto', display: 'block' }} />
           </a>
           <nav style={{ display: 'flex', gap: 4, marginLeft: 8 }} className="hx-hide-md">
             <NavPill href="#how" onClick={(e) => { e.preventDefault(); onNav('how'); }}>How it works</NavPill>

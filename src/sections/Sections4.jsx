@@ -199,15 +199,8 @@ function Footer({ onNav }) {
       <div className="hx-container" style={{ padding: 'var(--space-9) var(--gutter) var(--space-6)' }}>
         <div className="hx-foot-grid" style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr 1fr', gap: 'var(--space-7)', alignItems: 'start' }}>
           <div>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
-              <span style={{ display: 'inline-flex', alignItems: 'center', fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 25, letterSpacing: '-.04em', color: 'var(--cream)', lineHeight: 1 }}>
-                hongi
-                <svg viewBox="0 0 100 100" style={{ width: 24, height: 26, margin: '0 -1px', overflow: 'visible' }} aria-label="x" role="img">
-                  <defs><linearGradient id="hxSparkFooter" x1="0.1" y1="0" x2="0.9" y2="1"><stop offset="0" stopColor="#FFA23E" /><stop offset="1" stopColor="#EC5A1A" /></linearGradient></defs>
-                  <path transform="rotate(45 50 50)" d="M50 13 C55 35 65 45 87 50 C65 55 55 65 50 87 C45 65 35 55 13 50 C35 45 45 35 50 13 Z" fill="url(#hxSparkFooter)" stroke="url(#hxSparkFooter)" strokeWidth="10" strokeLinejoin="round" />
-                </svg>
-              </span>
-              <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 15, letterSpacing: '.01em', color: 'rgba(255,246,226,.72)', whiteSpace: 'nowrap' }}>Design Labs</span>
+            <div style={{ display: 'inline-flex', alignItems: 'center' }}>
+              <img src="/assets/hongix-logo-light.svg" alt="Hongix Designs" style={{ height: 40, width: 'auto', display: 'block' }} />
             </div>
             <p style={{ color: 'rgba(255,246,226,.7)', maxWidth: '34ch', marginTop: 14 }}>
               Your design support to launch, scale, and stand out, in one subscription.

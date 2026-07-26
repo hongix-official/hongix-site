@@ -1,6 +1,14 @@
-<svg width="64" height="64" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect x="7" y="7" width="82" height="82" rx="24" fill="#FFC02E" stroke="#1C1606" stroke-width="2.5"></rect>
-  <rect x="31" y="28" width="12" height="40" rx="6" fill="#1C1606"></rect>
-  <rect x="53" y="28" width="12" height="40" rx="6" fill="#1C1606"></rect>
-  <rect x="31" y="42" width="34" height="12" rx="6" fill="#1C1606"></rect>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <linearGradient id="hxMark" x1="123.38" y1="43.25" x2="362.01" y2="281.88" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f89c05"/>
+      <stop offset="1" stop-color="#fe4507"/>
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="52" fill="#000000"/>
+  <g transform="translate(71 60) scale(0.49)">
+    <polygon fill="#ffffff" points="154.58 159.16 60.7 159.18 60.72 268.39 .01 268.47 0 9.49 60.7 9.34 60.7 104.29 154.55 104.26 154.58 159.16"/>
+    <polygon fill="url(#hxMark)" points="233.24 94.82 233.12 67.34 233.26 0 221.84 6.34 170.06 34.96 170.31 73.47 170.09 162.76 170.08 243.07 182.26 249.66 185.41 251.58 189.41 253.69 194.9 256.71 233.21 277.82 233.24 168.13 233.21 157.63 233.24 94.82"/>
+  </g>
 </svg>
