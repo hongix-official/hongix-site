@@ -5,7 +5,27 @@
    so we reference it bare, matching the design's section files. */
 import { WAITLIST_ENDPOINT } from './config.js';
 
-const PLANS = ['Hongix Partner', 'Hongix Partner + Webflow', 'Not sure yet'];
+const PLANS = ['Hongix Partner', 'Landing Page Conversion Sprint', 'Hongix Partner + Advanced Development', 'Not sure yet'];
+
+// Modal title + subtitle adapt to the plan the visitor arrived with (or picks).
+const PLAN_COPY = {
+  'Landing Page Conversion Sprint': {
+    title: 'Book a Sprint',
+    sub: "Tell us about your landing page and we'll set up a quick consultation to scope it.",
+  },
+  'Hongix Partner': {
+    title: 'Apply for a founding spot',
+    sub: "Just 2 founding partner spots. Tell us a little about you and we'll be in touch.",
+  },
+  'Hongix Partner + Advanced Development': {
+    title: 'Apply for a founding spot',
+    sub: "Just 2 founding partner spots. Tell us about your project and we'll be in touch.",
+  },
+  'Not sure yet': {
+    title: "Let's work together",
+    sub: "Tell us a little about what you're building and we'll point you to the right fit.",
+  },
+};
 const PLACEHOLDER = 'PASTE_YOUR_APPS_SCRIPT_EXEC_URL_HERE';
 
 const field = {
@@ -80,8 +100,10 @@ export function WaitlistModal({ open, plan, onClose }) {
     }
   };
 
+  const copy = PLAN_COPY[choice] || PLAN_COPY['Hongix Partner'];
+
   return (
-    <div onClick={onClose} role="dialog" aria-modal="true" aria-label="Apply for a founding spot"
+    <div onClick={onClose} role="dialog" aria-modal="true" aria-label={copy.title}
       style={{ position: 'fixed', inset: 0, zIndex: 100, background: 'rgba(28,22,6,.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}>
       <div onClick={(e) => e.stopPropagation()}
         style={{ background: 'var(--paper)', border: 'var(--bw) solid var(--line)', borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-xl)', padding: 'var(--space-7)', maxWidth: 420, width: '100%', position: 'relative' }}>
@@ -95,15 +117,15 @@ export function WaitlistModal({ open, plan, onClose }) {
             <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 64, height: 64, background: 'var(--mint-300)', border: '1px solid var(--line)', borderRadius: 999, fontSize: 32, marginBottom: 14 }}><i className="ph-bold ph-check-circle" /></span>
             <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 24, margin: '0 0 8px' }}>Application received</h3>
             <p style={{ color: 'var(--ink-soft)', margin: '0 0 20px' }}>
-              Thanks{name.trim() ? `, ${name.trim().split(' ')[0]}` : ''} — we'll be in touch about your <strong style={{ color: 'var(--ink)' }}>{choice}</strong> founding partner spot shortly.
+              Thanks{name.trim() ? `, ${name.trim().split(' ')[0]}` : ''}. We'll be in touch about your <strong style={{ color: 'var(--ink)' }}>{choice}</strong> shortly.
             </p>
             <Button variant="primary" size="lg" full onClick={onClose}>Done</Button>
           </div>
         ) : (
           <>
-            <img src="/assets/logomark.svg" alt="" style={{ width: 48, height: 48, marginBottom: 14 }} />
-            <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 24, margin: '0 0 6px' }}>Apply for a founding spot</h3>
-            <p style={{ color: 'var(--ink-soft)', margin: '0 0 22px' }}>Just 2 founding partner spots. Tell us a little about you and we'll be in touch.</p>
+            <img src="/assets/favicon.svg" alt="" style={{ width: 48, height: 48, marginBottom: 14, borderRadius: 12 }} />
+            <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 24, margin: '0 0 6px' }}>{copy.title}</h3>
+            <p style={{ color: 'var(--ink-soft)', margin: '0 0 22px' }}>{copy.sub}</p>
 
             <form onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               <div>

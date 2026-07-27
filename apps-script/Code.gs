@@ -1,109 +1,141 @@
 /**
- * Hongix waitlist — Google Apps Script Web App backend.
+ * Hongix waitlist — Google Apps Script Web App backend (field-tolerant).
  *
- * Appends each waitlist submission from the website as a row in the bound
- * Google Sheet (Timestamp, Name, Email, Plan, Source).
+ * Appends each website submission as a row in the bound Google Sheet. Unlike the
+ * old version, this does NOT hardcode which fields exist: it reads the sheet's
+ * header row and maps whatever the form sends into the matching columns, creating
+ * a new column automatically for any field it hasn't seen before.
  *
- * SETUP: see apps-script/README.md. In short:
- *   1. Create a Google Sheet, open Extensions > Apps Script, paste this file.
- *   2. Deploy > New deployment > Web app
- *        - Execute as: Me
- *        - Who has access: Anyone
- *   3. Copy the /exec URL and paste it into src/config.js (WAITLIST_ENDPOINT).
+ *   → Add a new field to the website form later and you never touch this file
+ *     or redeploy again — a new column just appears in the sheet.
+ *
+ * SETUP (one time): Google Sheet > Extensions > Apps Script, paste this file.
+ *   Deploy > New deployment > Web app (Execute as: Me · Access: Anyone),
+ *   copy the /exec URL into src/config.js (WAITLIST_ENDPOINT).
+ * UPDATING later: Deploy > Manage deployments > (edit the existing web app) >
+ *   Version: New version > Deploy. The URL stays the same, so no config change.
  */
 
 const SHEET_NAME = 'Waitlist';
 
-// Where new-signup notifications are emailed. Change to whatever inbox you check.
-// (Leave empty '' to turn email notifications off.)
+// Columns the sheet starts with (nice order). Any extra form field becomes its
+// own column automatically, appended to the right.
+const BASE_HEADER = ['Timestamp', 'Name', 'Email', 'Plan', 'Source'];
+
+// Where new-signup notifications are emailed. '' turns email off.
 const NOTIFY_EMAIL = 'hello@hongix.com';
 
-// Discord webhook for new-signup pings. The URL is a secret, so it is NOT stored
-// in this (public) file — it lives in Script Properties:
-//   Project Settings (⚙️) > Script Properties > Add script property
-//     Property: DISCORD_WEBHOOK_URL
-//     Value:    https://discord.com/api/webhooks/…  (Server Settings > Integrations
-//               > Webhooks > New Webhook > Copy Webhook URL)
-// Leave the property unset to turn Discord notifications off.
+// Discord webhook lives in Script Properties (secret), not in this public file:
+//   Project Settings (⚙️) > Script Properties > DISCORD_WEBHOOK_URL = https://…
 function getDiscordWebhookUrl_() {
   return PropertiesService.getScriptProperties().getProperty('DISCORD_WEBHOOK_URL') || '';
 }
 
 function doPost(e) {
   try {
-    const p = (e && e.parameter) || {};
-    const name = String(p.name || '').slice(0, 200);
-    const email = String(p.email || '').slice(0, 200);
-    const plan = String(p.plan || '').slice(0, 120);
-    const source = String(p.source || '').slice(0, 120);
-
-    getSheet_().appendRow([new Date(), name, email, plan, source]);
-    notify_(name, email, plan, source);
-    notifyDiscord_(name, email, plan, source);
+    const data = collectParams_(e);
+    appendRecord_(data);
+    notify_(data);
+    notifyDiscord_(data);
     return json_({ ok: true });
   } catch (err) {
     return json_({ ok: false, error: String(err) });
   }
 }
 
-// Emails you on each signup. Wrapped so a mail hiccup never blocks the save.
-function notify_(name, email, plan, source) {
-  if (!NOTIFY_EMAIL) return;
+// Merge everything the request carried: form-encoded params + an optional JSON body.
+function collectParams_(e) {
+  const out = {};
+  const p = (e && e.parameter) || {};
+  Object.keys(p).forEach((k) => { if (k) out[k] = p[k]; });
   try {
-    MailApp.sendEmail({
-      to: NOTIFY_EMAIL,
-      subject: '🎉 New Hongix waitlist signup — ' + (name || email),
-      replyTo: email || undefined,
-      htmlBody:
-        '<p><strong>New waitlist signup</strong></p>' +
-        '<ul>' +
-        '<li><strong>Name:</strong> ' + escape_(name) + '</li>' +
-        '<li><strong>Email:</strong> ' + escape_(email) + '</li>' +
-        '<li><strong>Plan:</strong> ' + escape_(plan) + '</li>' +
-        '<li><strong>Source:</strong> ' + escape_(source) + '</li>' +
-        '</ul>',
-    });
-  } catch (err) {
-    // Ignore — the row is already saved; email is best-effort.
-  }
+    if (e && e.postData && e.postData.contents && /json/i.test(e.postData.type || '')) {
+      const j = JSON.parse(e.postData.contents);
+      Object.keys(j).forEach((k) => { if (k) out[k] = j[k]; });
+    }
+  } catch (_) { /* not JSON — ignore */ }
+  return out;
 }
 
-// Pings a Discord channel via webhook on each signup. Best-effort like the email:
-// a network hiccup never blocks the save (the row is already written).
-function notifyDiscord_(name, email, plan, source) {
+// Append one row, matching incoming keys to header columns by normalized name and
+// auto-adding a column for any key the sheet hasn't seen yet.
+function appendRecord_(data) {
+  const sheet = getSheet_();
+  const norm = (s) => String(s).trim().toLowerCase();
+
+  const lastCol = sheet.getLastColumn();
+  let header = lastCol ? sheet.getRange(1, 1, 1, lastCol).getValues()[0].map(String) : [];
+  if (!header.length || !header.some((h) => h)) {
+    header = BASE_HEADER.slice();
+    sheet.getRange(1, 1, 1, header.length).setValues([header]);
+    sheet.setFrozenRows(1);
+  }
+  let headerKeys = header.map(norm);
+
+  // Register any brand-new fields as extra columns on the right.
+  let grew = false;
+  Object.keys(data).forEach((k) => {
+    const nk = norm(k);
+    if (nk && nk !== 'timestamp' && headerKeys.indexOf(nk) === -1) {
+      header.push(titleCase_(k));
+      headerKeys.push(nk);
+      grew = true;
+    }
+  });
+  if (grew) sheet.getRange(1, 1, 1, header.length).setValues([header]);
+
+  const byKey = {};
+  Object.keys(data).forEach((k) => { byKey[norm(k)] = data[k]; });
+  const row = headerKeys.map((hk) =>
+    hk === 'timestamp' ? new Date() : (hk in byKey ? String(byKey[hk]).slice(0, 1000) : ''));
+  sheet.appendRow(row);
+}
+
+// Emails you on each signup, listing whatever fields came in. Best-effort.
+function notify_(data) {
+  if (!NOTIFY_EMAIL) return;
+  try {
+    const items = Object.keys(data)
+      .map((k) => '<li><strong>' + escape_(titleCase_(k)) + ':</strong> ' + escape_(data[k]) + '</li>')
+      .join('');
+    MailApp.sendEmail({
+      to: NOTIFY_EMAIL,
+      subject: '🎉 New Hongix waitlist signup — ' + (data.name || data.email || 'new lead'),
+      replyTo: data.email || undefined,
+      htmlBody: '<p><strong>New waitlist signup</strong></p><ul>' + items + '</ul>',
+    });
+  } catch (err) { /* row already saved — email is best-effort */ }
+}
+
+// Pings Discord on each signup with whatever fields came in. Best-effort.
+function notifyDiscord_(data) {
   const webhookUrl = getDiscordWebhookUrl_();
   if (!webhookUrl) return;
   try {
+    const fields = Object.keys(data).map((k) => ({
+      name: titleCase_(k), value: String(data[k] || '—').slice(0, 1024) || '—', inline: true,
+    }));
     const payload = {
       username: 'Hongix Waitlist',
-      embeds: [{
-        title: '🎉 New waitlist signup',
-        color: 0x5865F2,
-        fields: [
-          { name: 'Name', value: name || '—', inline: true },
-          { name: 'Email', value: email || '—', inline: true },
-          { name: 'Plan', value: plan || '—', inline: false },
-          { name: 'Source', value: source || '—', inline: false },
-        ],
-        timestamp: new Date().toISOString(),
-      }],
+      embeds: [{ title: '🎉 New waitlist signup', color: 0x5865F2, fields: fields, timestamp: new Date().toISOString() }],
     };
     UrlFetchApp.fetch(webhookUrl, {
-      method: 'post',
-      contentType: 'application/json',
-      payload: JSON.stringify(payload),
-      muteHttpExceptions: true,
+      method: 'post', contentType: 'application/json',
+      payload: JSON.stringify(payload), muteHttpExceptions: true,
     });
-  } catch (err) {
-    // Ignore — the row is already saved; the Discord ping is best-effort.
-  }
+  } catch (err) { /* row already saved — ping is best-effort */ }
+}
+
+// 'company' -> 'Company', 'company_size' -> 'Company Size'
+function titleCase_(k) {
+  return String(k).replace(/[_-]+/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
 function escape_(s) {
   return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
-// Health check — lets you verify the deployment in a browser (should return JSON).
+// Health check — open the /exec URL in a browser to verify (returns JSON).
 function doGet() {
   getSheet_();
   return json_({ ok: true, service: 'hongix-waitlist' });
@@ -114,7 +146,7 @@ function getSheet_() {
   let sheet = ss.getSheetByName(SHEET_NAME);
   if (!sheet) {
     sheet = ss.insertSheet(SHEET_NAME);
-    sheet.appendRow(['Timestamp', 'Name', 'Email', 'Plan', 'Source']);
+    sheet.appendRow(BASE_HEADER.slice());
     sheet.setFrozenRows(1);
   }
   return sheet;

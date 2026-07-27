@@ -8,11 +8,12 @@ import './sections/Sections2.jsx';
 import './sections/Sections3.jsx';
 import './sections/Sections4.jsx';
 import './sections/Work.jsx';
+import './sections/CaseStudy.jsx';
 import { WaitlistModal } from './waitlist.jsx';
 
 const {
   Header, Hero, TrustBar, About, Steps, Services,
-  Audience, WhyHongix, Testimonials, Pricing, Faq, BookCall, Footer, WorkShowcase,
+  Audience, WhyHongix, Testimonials, Pricing, Faq, BookCall, Footer, WorkShowcase, CaseStudyShowcase,
 } = window;
 
 // NOTE: TrustBar (stats) and Testimonials are intentionally not rendered yet —
@@ -73,5 +74,26 @@ function WorkPage() {
   );
 }
 
+/* The /case-study route — shared Header/Footer/modal, case study body. */
+function CaseStudyPage() {
+  const [waitlist, setWaitlist] = React.useState({ open: false, plan: null });
+  const onNav = (id, arg) => {
+    if (id === 'waitlist') { setWaitlist({ open: true, plan: arg || null }); return; }
+    window.location.href = '/#' + (id === 'top' ? 'top' : id);
+  };
+  return (
+    <React.Fragment>
+      <Header onNav={onNav} />
+      <main>
+        <CaseStudyShowcase onNav={onNav} />
+      </main>
+      <Footer onNav={onNav} />
+      <WaitlistModal open={waitlist.open} plan={waitlist.plan} onClose={() => setWaitlist({ open: false, plan: null })} />
+    </React.Fragment>
+  );
+}
+
 const route = window.location.pathname.replace(/\/+$/, '') || '/';
-ReactDOM.createRoot(document.getElementById('root')).render(route === '/work' ? <WorkPage /> : <App />);
+ReactDOM.createRoot(document.getElementById('root')).render(
+  route === '/work' ? <WorkPage /> : route === '/case-study' ? <CaseStudyPage /> : <App />
+);

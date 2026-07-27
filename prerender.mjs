@@ -38,10 +38,12 @@ await new Promise((r) => server.listen(PORT, r));
 // is unavailable and skipped.
 try {
   const shell = await readFile(join(DIST, 'index.html'), 'utf8');
-  await mkdir(join(DIST, 'work'), { recursive: true });
-  await writeFile(join(DIST, 'work', 'index.html'), shell, 'utf8');
+  for (const r of ['work', 'case-study']) {
+    await mkdir(join(DIST, r), { recursive: true });
+    await writeFile(join(DIST, r, 'index.html'), shell, 'utf8');
+  }
 } catch (e) {
-  console.warn('[prerender] could not seed /work shell:', e.message);
+  console.warn('[prerender] could not seed route shells:', e.message);
 }
 
 let chromium;
@@ -84,7 +86,10 @@ try {
   const work = await snapshot(page, '/work', 'Logbill');
   await writeFile(join(DIST, 'work', 'index.html'), work, 'utf8');
 
-  console.log('[prerender] snapshots written (landing + /work).');
+  const caseStudy = await snapshot(page, '/case-study', 'A quiet launch');
+  await writeFile(join(DIST, 'case-study', 'index.html'), caseStudy, 'utf8');
+
+  console.log('[prerender] snapshots written (landing + /work + /case-study).');
   await browser.close();
 } catch (err) {
   console.warn('[prerender] skipped:', err.message);

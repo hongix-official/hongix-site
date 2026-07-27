@@ -2,19 +2,125 @@
 const { Button: Btn4, Badge: Badge4, PriceCard, FaqItem, Input: Input4 } = window.HongixDesignSystem_ffb926;
 const SH4 = window.SectionHead;
 
-/* Wraps a PriceCard so its CTA button opens the waitlist modal with the plan preselected.
-   PriceCard has no onClick prop — the only interactive control inside it is the CTA button,
-   so we delegate clicks from the wrapper. */
-function PlanCard({ plan, onNav, ...props }) {
-  // The CTA renders a native <button>; its clicks (mouse + keyboard) bubble here.
-  const openWaitlist = (e) => {
-    if (!e.target.closest('button, a')) return;
-    e.preventDefault();
-    onNav('waitlist', plan);
-  };
+/* Card 1 — Landing Page Conversion Sprint: a credible paid entry engagement.
+   Built from the design-system hx-price classes so it matches PriceCard visually,
+   with a "Starting at" prefix + consultation note the PriceCard slots can't express. */
+/* Shared eyebrow above each price — a full-width row so the big number below it
+   lands on the same baseline across the Sprint and Partner cards. */
+const PRICE_EYEBROW = { width: '100%', fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--ink-soft)' };
+const DESC_MINH = 66; // reserve ~3 lines so both card descriptions align
+
+const SPRINT_FEATURES = [
+  'Conversion-focused UX review',
+  'Hero section redesign',
+  'Messaging & CTA improvements',
+  'Actionable implementation roadmap',
+];
+
+function SprintCard({ onNav }) {
   return (
-    <div onClick={openWaitlist} style={{ height: '100%' }}>
-      <PriceCard {...props} />
+    <div className="hx-price">
+      <Badge4 tone="coral" dot>Best for first-time clients</Badge4>
+      <div>
+        <h3 className="hx-price__name">Landing Page Conversion Sprint</h3>
+        <p className="hx-price__desc" style={{ minHeight: DESC_MINH }}>A focused, conversion-oriented review and redesign for startups that want clearer messaging, stronger calls to action, and a more effective landing page.</p>
+      </div>
+      <div className="hx-price__amount">
+        <span style={PRICE_EYEBROW}>Starting at</span>
+        <span className="hx-price__now">$400</span>
+        <span className="hx-price__per">USD · one-time</span>
+      </div>
+      <hr className="hx-price__hr" />
+      <ul className="hx-price__list" style={{ flex: '0 0 auto' }}>
+        {SPRINT_FEATURES.map((f, i) => (
+          <li key={i}><span className="hx-price__check"><i className="ph-bold ph-check" aria-hidden="true" /></span>{f}</li>
+        ))}
+      </ul>
+      <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11.5, letterSpacing: '.02em', color: 'var(--ink-faint)', margin: '-4px 0 0' }}>Includes Figma file + Loom walkthrough</p>
+      <div style={{ flex: '1 0 auto' }} />
+      <Btn4 variant="primary" size="lg" full iconRight="ph-arrow-right" onClick={() => onNav('waitlist', 'Landing Page Conversion Sprint')}>Book a Sprint</Btn4>
+      <p style={{ fontFamily: 'var(--font-body)', fontSize: 13.5, lineHeight: 1.5, color: 'var(--ink-soft)', textAlign: 'center', margin: 0 }}>A practical first project before committing to an ongoing partnership. Final scope &amp; pricing confirmed after a short consultation.</p>
+    </div>
+  );
+}
+
+/* Card 2 — Hongix Partner: the premium ongoing offer. Built with the same hx-price
+   structure as SprintCard (matching eyebrow + description height) so the two prices
+   line up, plus the featured gradient to make it the visual anchor. */
+const PARTNER_FEATURES = [
+  'Product, launch & growth design',
+  'Framer & Squarespace builds included',
+  'Fresh work delivered every 48 hours',
+  'Work directly with the founder',
+  'Request as much as you need',
+  'Pause or cancel anytime',
+];
+
+function PartnerCard({ onNav }) {
+  return (
+    <div className="hx-price hx-price--feature">
+      <Badge4 tone="ink" dot>Founding Partner · 2 spots</Badge4>
+      <div>
+        <h3 className="hx-price__name">Hongix Partner</h3>
+        <p className="hx-price__desc" style={{ minHeight: DESC_MINH }}>Your dedicated senior design partner for product, launch, and growth. <strong style={{ color: 'var(--ink)', fontWeight: 700 }}>No hiring, no management. Just senior design when you need it.</strong></p>
+      </div>
+      <div className="hx-price__amount">
+        <span style={PRICE_EYEBROW}>Founding rate</span>
+        <span className="hx-price__was">$3,999</span>
+        <span className="hx-price__now">$2,999</span>
+        <span className="hx-price__per">USD / month</span>
+      </div>
+      <hr className="hx-price__hr" />
+      <ul className="hx-price__list">
+        {PARTNER_FEATURES.map((f, i) => (
+          <li key={i}><span className="hx-price__check"><i className="ph-bold ph-check" aria-hidden="true" /></span>{f}</li>
+        ))}
+      </ul>
+      <Btn4 variant="ink" size="lg" full iconRight="ph-arrow-right" onClick={() => onNav('waitlist', 'Hongix Partner')}>Apply for a founding spot</Btn4>
+      <p className="hx-price__note">Founding rate locked for 6 months · next 2 partners only</p>
+    </div>
+  );
+}
+
+/* Full-width add-on — an optional implementation layer that can attach to either
+   a Sprint or a Partner engagement, so it sits beneath both primary cards. */
+const ADDON_FEATURES = [
+  'Webflow or WordPress builds',
+  'Advanced CMS architecture & integrations',
+  'Custom functionality & migrations',
+  'Ongoing technical maintenance',
+];
+
+function AddOnCard() {
+  const skyCheck = { flex: 'none', width: 24, height: 24, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: 'var(--sky-400)', borderRadius: 999, color: 'var(--paper)', fontSize: 14, marginTop: 1 };
+  return (
+    <div style={{ gridColumn: '1 / -1', background: 'var(--paper)', border: 'var(--bw) solid var(--line)', borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-md)', padding: 32, display: 'flex', flexDirection: 'column', gap: 22 }}>
+      {/* Full-width ribbon spanning the whole card, content beneath it */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '.55em', width: '100%', fontFamily: 'var(--font-mono)', fontWeight: 700, fontSize: 12, letterSpacing: '.06em', textTransform: 'uppercase', lineHeight: 1, padding: '9px 15px', border: 'var(--bw) solid var(--line)', borderRadius: 'var(--radius-pill)', background: 'var(--sky-300)', color: 'var(--ink)' }}>
+        <span style={{ width: 8, height: 8, borderRadius: 999, border: 'var(--bw) solid var(--line)', background: 'var(--paper)', flex: 'none' }} />
+        Optional add-on
+      </div>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-7)', alignItems: 'flex-start' }}>
+        <div style={{ flex: '1 1 340px', minWidth: 0, display: 'flex', flexDirection: 'column', gap: 14 }}>
+          <div>
+            <h3 className="hx-price__name">Advanced Website Development</h3>
+            <p className="hx-price__desc" style={{ marginTop: 8 }}>For projects that need Webflow, WordPress, advanced CMS architecture, custom functionality, migrations, or ongoing technical implementation.</p>
+          </div>
+          <div className="hx-price__amount">
+            <span style={PRICE_EYEBROW}>Starting at</span>
+            <span className="hx-price__now" style={{ fontSize: 40 }}>+$1,000</span>
+            <span className="hx-price__per">USD · scoped per project</span>
+          </div>
+        </div>
+        <div style={{ flex: '1 1 300px', minWidth: 0, display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <ul className="hx-price__list" style={{ flex: '0 1 auto' }}>
+            {ADDON_FEATURES.map((f, i) => (
+              <li key={i}><span style={skyCheck}><i className="ph-bold ph-check" aria-hidden="true" /></span>{f}</li>
+            ))}
+          </ul>
+          <p style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 700, letterSpacing: '.03em', color: 'var(--ink-soft)', margin: 0, lineHeight: 1.6 }}>Available with either a Sprint or Partner engagement. Just mention your development needs when you apply or book a consultation.</p>
+        </div>
+      </div>
     </div>
   );
 }
@@ -23,51 +129,15 @@ function Pricing({ refEl, onNav }) {
   return (
     <section id="pricing" ref={refEl} className="hx-section">
       <div className="hx-container">
-        <SH4 align="center" eyebrow="Pricing" title={<>One partner, <span className="hx-serif">one</span> clear price.</>}
-          maxw="none" sub="A predictable monthly partnership. Pause or cancel anytime. No contracts, no retainer minimums." />
-        <div className="hx-price-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-6)', maxWidth: 920, margin: '0 auto', alignItems: 'stretch' }}>
-          <PlanCard
-            plan="Hongix Partner"
-            onNav={onNav}
-            featured
-            name="Hongix Partner"
-            description="Ongoing senior design across product, launch, and growth, from one predictable partner."
-            badge="Founding Partner · 2 spots" was="$3,999" now="$2,999" per="USD / month"
-            features={[
-              'Product, launch & growth design',
-              'Framer & Squarespace builds included',
-              'One active request at a time',
-              'Fresh work every 48 hours',
-              'Direct partnership with the founder',
-              'Pause or cancel anytime',
-            ]}
-            cta="Apply for a founding spot"
-            note="Founding rate locked for 6 months · next 2 partners only"
-          />
-          {/* Webflow — optional add-on, presented as its own card */}
-          <div style={{ background: 'var(--paper)', border: 'var(--bw) solid var(--line)', borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-md)', padding: 32, display: 'flex', flexDirection: 'column', gap: 18, height: '100%' }}>
-            <Badge4 tone="sky" dot>Optional add-on</Badge4>
-            <div>
-              <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 24, letterSpacing: '-.02em', margin: 0 }}>Custom Webflow / WordPress development</h3>
-              <p style={{ fontSize: 15, lineHeight: 1.5, color: 'var(--ink-soft)', margin: '8px 0 0' }}>For teams that need a fully custom, CMS-driven website built and maintained.</p>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, flexWrap: 'wrap' }}>
-              <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 44, letterSpacing: '-.03em', lineHeight: 1 }}>+$1,000</span>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: 'var(--ink-soft)' }}>USD / month</span>
-            </div>
-            <hr style={{ border: 'none', borderTop: '1px solid var(--line)', margin: '2px 0' }} />
-            <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 11, flex: '1 0 auto' }}>
-              {['Fully custom Webflow or WordPress build', 'Complex architectures & CMS', 'Ongoing maintenance & updates', 'Added on top of your partner plan'].map((f, i) => (
-                <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontFamily: 'var(--font-body)', fontSize: 15.5, color: 'var(--ink)', lineHeight: 1.4 }}>
-                  <span style={{ flex: 'none', width: 24, height: 24, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: 'var(--sky-400)', borderRadius: 999, color: 'var(--paper)', fontSize: 14, marginTop: 1 }}><i className="ph-bold ph-check" aria-hidden="true" /></span>{f}
-                </li>
-              ))}
-            </ul>
-            <p style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 700, letterSpacing: '.04em', color: 'var(--ink-soft)', textAlign: 'center', margin: 0 }}>Just mention it when you apply</p>
-          </div>
+        <SH4 align="center" eyebrow="Pricing" title={<>Two ways to <span className="hx-serif">work together</span>.</>}
+          maxw="none" sub="Begin with a focused Landing Page Sprint, or bring on a dedicated design partner for ongoing product, launch, and growth. Custom web development can layer onto either." />
+        <div className="hx-price-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-6)', maxWidth: 980, margin: '0 auto', alignItems: 'stretch' }}>
+          <SprintCard onNav={onNav} />
+          <PartnerCard onNav={onNav} />
+          <AddOnCard />
         </div>
-        <p style={{ textAlign: 'center', fontSize: 13.5, color: 'var(--ink-soft)', margin: 'var(--space-5) auto 0', maxWidth: 480 }}>
-          After the founding program, partners move to the standard rate or a custom agreement.
+        <p style={{ textAlign: 'center', fontSize: 13.5, color: 'var(--ink-soft)', margin: 'var(--space-5) auto 0', maxWidth: 560 }}>
+          Submit as many requests as you like. We work one active request at a time, so every deliverable gets senior focus. After the founding program, partners move to the standard rate or a custom agreement.
         </p>
       </div>
     </section>
@@ -87,6 +157,8 @@ const FAQS = [
    "Everything happens inside your dedicated Kanban board. Write a brief on a card, attach a Google Doc, drop in visual inspiration, or link a Loom video. As long as the details are on the board, the work is ready to begin."],
   ["Are there any creative services you do not cover?",
    "To keep speed and quality high, Hongix stays focused on core design. That means no 3D modeling, heavy document typesetting, complex custom app architecture, or non-design work like copywriting, strategy, and SEO research."],
+  ["Why are Webflow and WordPress separate?",
+   "Framer and Squarespace projects typically fit within our standard design workflow, so they're included in the Partner plan. Webflow and WordPress projects often require more advanced development, such as CMS architecture, integrations, migrations, or ongoing technical maintenance. For those cases we offer an optional development add-on, so you're only paying more when the work genuinely calls for it, not because of the platform you picked."],
   ["Do you offer refunds if I change my mind?",
    "Because of the intensive nature of the work and the immediate time invested, refunds are not offered. Instead, we keep refining each request until you are absolutely thrilled with the result."],
 ];
