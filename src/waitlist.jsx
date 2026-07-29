@@ -5,13 +5,13 @@
    so we reference it bare, matching the design's section files. */
 import { WAITLIST_ENDPOINT } from './config.js';
 
-const PLANS = ['Hongix Partner', 'Landing Page Conversion Sprint', 'Hongix Partner + Advanced Development', 'Not sure yet'];
+const PLANS = ['Hongix Partner', 'Focused Design Sprint', 'Hongix Partner + Advanced Development', 'Not sure yet'];
 
 // Modal title + subtitle adapt to the plan the visitor arrived with (or picks).
 const PLAN_COPY = {
-  'Landing Page Conversion Sprint': {
-    title: 'Book a Sprint',
-    sub: "Tell us about your landing page and we'll set up a quick consultation to scope it.",
+  'Focused Design Sprint': {
+    title: 'Book a project',
+    sub: "Tell us about your project and we'll set up a quick kickoff call to scope it.",
   },
   'Hongix Partner': {
     title: 'Apply for a founding spot',

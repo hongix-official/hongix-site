@@ -2,7 +2,7 @@
 const { Button: Btn4, Badge: Badge4, PriceCard, FaqItem, Input: Input4 } = window.HongixDesignSystem_ffb926;
 const SH4 = window.SectionHead;
 
-/* Card 1 — Landing Page Conversion Sprint: a credible paid entry engagement.
+/* Card 1 — Focused Design Sprint: a credible paid entry engagement.
    Built from the design-system hx-price classes so it matches PriceCard visually,
    with a "Starting at" prefix + consultation note the PriceCard slots can't express. */
 /* Shared eyebrow above each price — a full-width row so the big number below it
@@ -11,9 +11,9 @@ const PRICE_EYEBROW = { width: '100%', fontFamily: 'var(--font-mono)', fontSize:
 const DESC_MINH = 66; // reserve ~3 lines so both card descriptions align
 
 const SPRINT_FEATURES = [
-  'Conversion-focused UX review',
-  'Hero section redesign',
-  'Messaging & CTA improvements',
+  'Any single design project',
+  'Scope locked in a kickoff call',
+  'Senior design, no handoffs',
   'Actionable implementation roadmap',
 ];
 
@@ -22,13 +22,13 @@ function SprintCard({ onNav }) {
     <div className="hx-price">
       <Badge4 tone="coral" dot>Best for first-time clients</Badge4>
       <div>
-        <h3 className="hx-price__name">Landing Page Conversion Sprint</h3>
-        <p className="hx-price__desc" style={{ minHeight: DESC_MINH }}>A focused, conversion-oriented review and redesign for startups that want clearer messaging, stronger calls to action, and a more effective landing page.</p>
+        <h3 className="hx-price__name">Focused Design Sprint</h3>
+        <p className="hx-price__desc" style={{ minHeight: DESC_MINH }}>A short, scoped engagement for one clear goal, such as a landing page, product screens, pitch deck, or brand refresh. No retainer required.</p>
       </div>
       <div className="hx-price__amount">
         <span style={PRICE_EYEBROW}>Starting at</span>
         <span className="hx-price__now">$400</span>
-        <span className="hx-price__per">USD · one-time</span>
+        <span className="hx-price__per">USD / project</span>
       </div>
       <hr className="hx-price__hr" />
       <ul className="hx-price__list" style={{ flex: '0 0 auto' }}>
@@ -38,8 +38,8 @@ function SprintCard({ onNav }) {
       </ul>
       <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11.5, letterSpacing: '.02em', color: 'var(--ink-faint)', margin: '-4px 0 0' }}>Includes Figma file + Loom walkthrough</p>
       <div style={{ flex: '1 0 auto' }} />
-      <Btn4 variant="primary" size="lg" full iconRight="ph-arrow-right" onClick={() => onNav('waitlist', 'Landing Page Conversion Sprint')}>Book a Sprint</Btn4>
-      <p style={{ fontFamily: 'var(--font-body)', fontSize: 13.5, lineHeight: 1.5, color: 'var(--ink-soft)', textAlign: 'center', margin: 0 }}>A practical first project before committing to an ongoing partnership. Final scope &amp; pricing confirmed after a short consultation.</p>
+      <Btn4 variant="primary" size="lg" full iconRight="ph-arrow-right" onClick={() => onNav('waitlist', 'Focused Design Sprint')}>Book a project</Btn4>
+      <p style={{ fontFamily: 'var(--font-body)', fontSize: 13.5, lineHeight: 1.5, color: 'var(--ink-soft)', textAlign: 'center', margin: 0 }}>A practical first project before committing to an ongoing partnership.</p>
     </div>
   );
 }
@@ -130,7 +130,7 @@ function Pricing({ refEl, onNav }) {
     <section id="pricing" ref={refEl} className="hx-section">
       <div className="hx-container">
         <SH4 align="center" eyebrow="Pricing" title={<>Two ways to <span className="hx-serif">work together</span>.</>}
-          maxw="none" sub="Begin with a focused Landing Page Sprint, or bring on a dedicated design partner for ongoing product, launch, and growth. Custom web development can layer onto either." />
+          maxw="none" sub="Begin with a focused design sprint, or bring on a dedicated design partner for ongoing product, launch, and growth. Custom web development can layer onto either." />
         <div className="hx-price-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-6)', maxWidth: 980, margin: '0 auto', alignItems: 'stretch' }}>
           <SprintCard onNav={onNav} />
           <PartnerCard onNav={onNav} />
