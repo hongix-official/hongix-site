@@ -39,7 +39,7 @@ function SprintCard({ onNav }) {
       <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11.5, letterSpacing: '.02em', color: 'var(--ink-faint)', margin: '-4px 0 0' }}>Includes Figma file + Loom walkthrough</p>
       <div style={{ flex: '1 0 auto' }} />
       <Btn4 variant="primary" size="lg" full iconRight="ph-arrow-right" onClick={() => onNav('waitlist', 'Focused Design Sprint')}>Book a project</Btn4>
-      <p style={{ fontFamily: 'var(--font-body)', fontSize: 13.5, lineHeight: 1.5, color: 'var(--ink-soft)', textAlign: 'center', margin: 0 }}>A practical first project before committing to an ongoing partnership.</p>
+      <p style={{ fontFamily: 'var(--font-body)', fontSize: 13.5, lineHeight: 1.5, color: 'var(--ink-soft)', textAlign: 'center', margin: 0, minHeight: 42, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>A practical first project before committing to an ongoing partnership.</p>
     </div>
   );
 }
@@ -77,7 +77,7 @@ function PartnerCard({ onNav }) {
         ))}
       </ul>
       <Btn4 variant="ink" size="lg" full iconRight="ph-arrow-right" onClick={() => onNav('waitlist', 'Hongix Partner')}>Apply for a founding spot</Btn4>
-      <p className="hx-price__note">Founding rate locked for 6 months · next 2 partners only</p>
+      <p className="hx-price__note" style={{ margin: 0, minHeight: 42, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Founding rate locked for 6 months · next 2 partners only</p>
     </div>
   );
 }
